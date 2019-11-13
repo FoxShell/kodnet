@@ -2,7 +2,7 @@
 
 kodnet allows use any .NET object/class/type from VFP9. 
 
-This project is a guide for install and use kodnet. Contains the distributable files, and the info required for included in your project. 
+This project is a guide for install and use kodnet. Contains the distributable files, and the info required for include in your VFP project.
 
 If you want see C# source code:
  - [jxshell.dotnet4](https://github.com/kodhework/jxshell.dotnet4)
