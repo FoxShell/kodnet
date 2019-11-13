@@ -12,8 +12,6 @@ If you want see the original repositories:
 
 # Be an sponsor
 
-My goal is to reach 100 USD for kodnet. Help me to achieve it. 
-
 Make open source software is hard, and need many time. Please consider donate, your name will appear here
 
 * Donate to paypal [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XTUTKMVWCVQCJ&source=url)
