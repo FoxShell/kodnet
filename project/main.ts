@@ -16,6 +16,12 @@ async function main(){
     try{
         let KawixDir = Path.join(Os.homedir(), "Kawix")
 		let ShideLibDir = Path.join(KawixDir, "Shide.lib")
+		if (!fs.existsSync(ShideLibDir)) {
+			try {
+				await fs.mkdirSync(ShideLibDir)
+			} catch (e) { }
+		}
+
 		let kodnet = Path.join(ShideLibDir, "kodnet")
         if(fs.existsSync(kodnet)){
 			try{
