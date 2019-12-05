@@ -2,11 +2,10 @@
 
 kodnet allows use any .NET object/class/type from VFP9. 
 
-This project is a guide for install and use kodnet. Contains the distributable files, and generates a kwa file for easy installation
+This project is a guide for install and use kodnet. Contains the distributable files, and the info required for include in your VFP project.
 
-If you want see the original repositories:
+If you want see C# source code:
  - [jxshell.dotnet4](https://github.com/kodhework/jxshell.dotnet4)
- - [kodnet](https://github.com/kodhework/kodnet)
 
 
 
@@ -22,10 +21,12 @@ Make open source software is hard, and need many time. Please consider donate, y
 
 1. Install [@kawix/core](https://github.com/kodhework/kawix/blob/master/core/INSTALL.md)
 
-2. Install the Kodnet library. From cmd: 
+2. Install the Kodnet library. Execute in cmd the following command: 
+
+> This command can be executed as normal user or as admin, you decide. If you execute as normal user, *kodnet* will not be usable inside a VisualFoxPro application started with admin rights. If you need use *kodnet* inside a VisualFoxPro application started with admin rights, please make sure you execute this command on a **cmd with admin rights**
 
 ```bash
-kwcore gh+/voxsoftware/packages/kodnet/0.0.1.kwa
+kwcore gh+/voxsoftware/packages/org.kodhe.kodnet/0.0.7.kwa
 ```
 
 That's all, you are ready to use. See the examples
