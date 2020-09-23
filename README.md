@@ -26,7 +26,7 @@ Make open source software is hard, and need many time. Please consider donate, y
 > This command can be executed as normal user or as admin, you decide. If you execute as normal user, *kodnet* will not be usable inside a VisualFoxPro application started with admin rights. If you need use *kodnet* inside a VisualFoxPro application started with admin rights, please make sure you execute this command on a **cmd with admin rights**
 
 ```bash
-kwcore gh+/voxsoftware/packages/org.kodhe.kodnet/0.0.7.kwa
+kwcore gh+/FoxShell/packages/kodnet/0.1.0.kwa
 ```
 
 That's all, you are ready to use. See the examples
