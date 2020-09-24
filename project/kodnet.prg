@@ -238,13 +238,14 @@ DEFINE CLASS jxshell_dotnet4 as Session
 		
 		
 		ev0 = ev.construct(m.object, m.method)
-		try
-			*addproperty(m.object, "_event_" + m.method, null)
-		catch to er 
-		endtry 
 		
+		*try
+		*	addproperty(m.object, "_event_" + m.method, null)
+		*catch to er 
+		*endtry 
 		*str = "m.object._event_" + m.method + "=m.ev0"
 		*&str 
+
 		return ev0
 		
 	ENDFUNC 
