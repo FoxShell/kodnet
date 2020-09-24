@@ -38,8 +38,6 @@ return
 
 DEFINE CLASS downloadCallback  as Custom 
 	FUNCTION finished(sender, args)
-		* avoid memory leaks (this is only required for objects not forms)
-		this._event_finished.destroy()
 		IF !ISNULL(args.Error)
 			MESSAGEBOX("Failed download: " + args.Error.Message, 48, "")
 		ELSE 
