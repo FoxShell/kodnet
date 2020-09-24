@@ -131,17 +131,24 @@ DEFINE CLASS kodnet as Custom
 
 ENDDEFINE 
 
-DEFINE CLASS jxshell_event as Session
+DEFINE CLASS jxshell_event as custom
 	target=null
+	_method=''
+	
 	FUNCTION init(target,method)
 		IF !(m.target.baseclass == "Form")
 			this.target= m.target
+			this._method = m.method
+		
 			ADDPROPERTY(this.target, "_event_" + m.method, this)
-		ENDIF 
-		BINDEVENT(this, "invoke", m.target, m.method)
+		ENDIF
+		
+		* THIS NOT WORKING ON VFPA
+		BINDEVENT(this, "invoke", m.target, m.method)	
 	ENDFUNC 
+	
 	FUNCTION invoke()
-		LPARAMETERS e1,e2,e3
+		LPARAMETERS e1,e2,e3,e4,e5,e6
 	ENDFUNC 
 	FUNCTION destroy()
 		this.target= null
@@ -220,9 +227,25 @@ DEFINE CLASS jxshell_dotnet4 as Session
 		ENDIF 
 		LOCAL ev, even
 		ev = _Screen.dotnet4.getStaticWrapper(m.className)
-		even= CREATEOBJECT("jxshell_event", m.object, m.method)
-		RETURN ev.construct(m.even, "invoke")
-		*RETURN ev.construct(m.object, m.method)
+		
+		
+		*even= CREATEOBJECT("jxshell_event", m.object, m.method)
+		*RETURN ev.construct(m.even, "invoke")
+		
+		IF !(m.object.baseclass == "Form")
+			*even= CREATEOBJECT("jxshell_event", m.object, m.method)
+		endif 
+		
+		
+		ev0 = ev.construct(m.object, m.method)
+		try
+			*addproperty(m.object, "_event_" + m.method, null)
+		catch to er 
+		endtry 
+		
+		*str = "m.object._event_" + m.method + "=m.ev0"
+		*&str 
+		return ev0
 		
 	ENDFUNC 
 
