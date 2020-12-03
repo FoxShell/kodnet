@@ -294,6 +294,24 @@ DEFINE CLASS jxshell_dotnet4 as Session
 
 	ENDFUNC 
 	
+	FUNCTION await(toTask)
+		LOCAL lcERR 
+		DECLARE Sleep IN kernel32 as await_sleep integer
+		
+		DO WHILE NOT toTask.IsCompleted
+			await_sleep(10)
+		ENDDO 
+		
+		CLEAR DLLS 'await_sleep'
+
+		IF toTask.IsFaulted
+			lcERR = toTask.Exception.ToString()
+			ERROR lcErr
+		ENDIF 
+		
+		RETURN toTask.Result
+	ENDFUNC 
+	
 ENDDEFINE
 
 DEFINE CLASS JXSHELLDOTNET4_WIN32API AS Session
@@ -358,21 +376,3 @@ DEFINE CLASS JXSHELLDOTNET4_WIN32API AS Session
 	ENDFUNC 
 	
 ENDDEFINE 
-
-FUNCTION await(toTask)
-	LOCAL lcERR 
-	DECLARE Sleep IN kernel32 as await_sleep integer
-	
-	DO WHILE NOT toTask.IsCompleted
-		await_sleep(100)
-	ENDDO 
-	
-	CLEAR DLLS 'await_sleep'
-
-	IF toTask.IsFaulted
-		lcERR = toTask.Exception.ToString()
-		ERROR lcErr
-	ENDIF 
-	
-	RETURN toTask.Result
-ENDFUNC 
