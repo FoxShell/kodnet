@@ -1,6 +1,6 @@
 # kodnet 
 
-Versión en ESPAÑOL => [README-es-la.md](./README-es-la-md)
+Versión en ESPAÑOL => [README-es-la.md](./README-es-la.md)
 
 kodnet allows use any .NET object/class/type from VFP9. 
 
