@@ -1,5 +1,7 @@
 # kodnet 
 
+For Spanish version go here: [README-es-la.md](./README-es-la-md)
+
 kodnet allows use any .NET object/class/type from VFP9. 
 
 This project is a guide for install and use kodnet. Contains the distributable files, and the info required for include in your VFP project.
@@ -11,7 +13,7 @@ If you want see C# source code:
 
 # Be an sponsor
 
-Make open source software is hard, and need many time. Please consider donate, your name will appear here
+Make open source software is hard, and need many time. Please consider donate, and if you want write us to developer@kodhe.com, and your name will appear here
 
 * Donate to paypal [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XTUTKMVWCVQCJ&source=url)
 
@@ -25,7 +27,7 @@ Make open source software is hard, and need many time. Please consider donate, y
 
 > This command can be executed as normal user or as admin, you decide. If you execute as normal user, *kodnet* will not be usable inside a VisualFoxPro application started with admin rights. If you need use *kodnet* inside a VisualFoxPro application started with admin rights, please make sure you execute this command on a **cmd with admin rights**
 
-```bash
+```bash	
 kwcore gh+/FoxShell/packages/kodnet/0.1.2.kwa
 ```
 
