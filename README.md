@@ -21,14 +21,18 @@ Make open source software is hard, and need many time. Please consider donate, a
 
 # Installation of kodnet 
 
-1. Install [@kawix/core](https://github.com/kodhework/kawix/blob/master/core/INSTALL.md)
+1. Install [kwruntime/core](https://github.com/kwruntime/core/blob/main/core/INSTALL.md)
 
 2. Install the Kodnet library. Execute in cmd the following command: 
 
 > This command can be executed as normal user or as admin, you decide. If you execute as normal user, *kodnet* will not be usable inside a VisualFoxPro application started with admin rights. If you need use *kodnet* inside a VisualFoxPro application started with admin rights, please make sure you execute this command on a **cmd with admin rights**
 
+> From 2022-02-03 is preferrable execute this as admin
+
+> If you have errors installing as non admin, please retry the process installing as admin
+
 ```bash	
-kwcore gh+/FoxShell/packages/kodnet/0.1.2.kwa
+kwrun gh+/FoxShell/packages/kodnet/2.0.0.kwc
 ```
 
 That's all, you are ready to use. See the examples
