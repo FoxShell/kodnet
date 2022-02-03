@@ -19,14 +19,18 @@ Hacer software libre es complicado, y requiere tiempo. Por favor considere donar
 
 # Instalación de kodnet 
 
-1. Instalar [@kawix/core](https://github.com/kodhework/kawix/blob/master/core/INSTALL.md)
+1. Instalar [kwruntime/core](https://github.com/kwruntime/core/blob/main/INSTALL.md)
 
 2. Instalar la librería kodnet. Ejecute en una ventana cmd:
 
 > Este comando puede ser ejecutado como un usuario normal, o como administrador, usted decide. Si usted ejecuta como usuario normal, *kodnet* no funcionará dentro de aplicaciones VisualFoxPro iniciadas como administrador. Si usted necesita usar *kodnet* dentro de aplicaciones VisualFoxPro iniciadas como administrador, aségurese de ejecutar la siguiente línea en una ventana **cmd modo administrador**
 
+> Desde 03/02/2022 es preferible usar la instalación en modo administrador
+
+> Si tiene problemas para usar kodnet después de instalar en modo no administrador, reintente la instalación en modo administrador.
+
 ```bash
-kwcore gh+/FoxShell/packages/kodnet/0.1.2.kwa
+kwcore gh+/FoxShell/packages/kodnet/2.0.0.kwc
 ```
 
 Es todo, está listo para usar. Vea los ejemplos
