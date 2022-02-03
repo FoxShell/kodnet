@@ -21,7 +21,7 @@ Make open source software is hard, and need many time. Please consider donate, a
 
 # Installation of kodnet 
 
-1. Install [kwruntime/core](https://github.com/kwruntime/core/blob/main/core/INSTALL.md)
+1. Install [kwruntime/core](https://github.com/kwruntime/core/blob/main/INSTALL.md)
 
 2. Install the Kodnet library. Execute in cmd the following command: 
 
