@@ -30,7 +30,7 @@ Hacer software libre es complicado, y requiere tiempo. Por favor considere donar
 > Si tiene problemas para usar kodnet después de instalar en modo no administrador, reintente la instalación en modo administrador.
 
 ```bash
-kwcore gh+/FoxShell/packages/kodnet/2.0.0.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.0.kwc
 ```
 
 Es todo, está listo para usar. Vea los ejemplos
