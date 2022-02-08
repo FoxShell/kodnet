@@ -25,14 +25,10 @@ Make open source software is hard, and need many time. Please consider donate, a
 
 2. Install the Kodnet library. Execute in cmd the following command: 
 
-> This command can be executed as normal user or as admin, you decide. If you execute as normal user, *kodnet* will not be usable inside a VisualFoxPro application started with admin rights. If you need use *kodnet* inside a VisualFoxPro application started with admin rights, please make sure you execute this command on a **cmd with admin rights**
-
-> From 2022-02-03 is preferrable execute this as admin
-
-> If you have errors installing as non admin, please retry the process installing as admin
+> No required admin permissions. You can execute as normal user.
 
 ```bash	
-kwrun gh+/FoxShell/packages/kodnet/2.0.0.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.3.kwc
 ```
 
 That's all, you are ready to use. See the examples
@@ -41,7 +37,7 @@ That's all, you are ready to use. See the examples
 # Requirements
 
 1. VFP9 or superior 
-2. NET Framework 4.0 or superior 
+2. NET Framework 4.5 or superior 
 
 
 # Features

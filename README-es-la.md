@@ -23,14 +23,10 @@ Hacer software libre es complicado, y requiere tiempo. Por favor considere donar
 
 2. Instalar la librería kodnet. Ejecute en una ventana cmd:
 
-> Este comando puede ser ejecutado como un usuario normal, o como administrador, usted decide. Si usted ejecuta como usuario normal, *kodnet* no funcionará dentro de aplicaciones VisualFoxPro iniciadas como administrador. Si usted necesita usar *kodnet* dentro de aplicaciones VisualFoxPro iniciadas como administrador, aségurese de ejecutar la siguiente línea en una ventana **cmd modo administrador**
-
-> Desde 03/02/2022 es preferible usar la instalación en modo administrador
-
-> Si tiene problemas para usar kodnet después de instalar en modo no administrador, reintente la instalación en modo administrador.
+> No necesita permisos de administrador. Puede ser ejecutado como usuario normal.
 
 ```bash
-kwrun gh+/FoxShell/packages/kodnet/2.0.0.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.3.kwc
 ```
 
 Es todo, está listo para usar. Vea los ejemplos
@@ -39,7 +35,7 @@ Es todo, está listo para usar. Vea los ejemplos
 # Requerimientos
 
 1. VFP9 o superior 
-2. NET Framework 4.0 o superior (NET Core no soportado todavía)
+2. NET Framework 4.5 o superior (NET Core no soportado todavía)
 
 
 # Features
