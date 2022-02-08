@@ -35,14 +35,22 @@ async function parseRegedit(content: string){
 				pvalue = JSON.parse(pvalue)
 			}
 
-			if(pname == "@")
-				pname = "default"
+			if(pname == "@"){
+				obj[state.current][pname] = {
+					"type": "REG_DEFAULT",
+					value: pvalue
+				}
+			}
+			else{
+				obj[state.current][pname] = {
+					"type": "REG_SZ",
+					value: pvalue
+				}
+			}
 			
 
-			obj[state.current][pname] = {
-				"type": "REG_SZ",
-				value: pvalue
-			}
+			
+			
 
 			
 

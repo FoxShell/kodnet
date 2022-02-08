@@ -28,7 +28,7 @@ Make open source software is hard, and need many time. Please consider donate, a
 > No required admin permissions. You can execute as normal user.
 
 ```bash	
-kwrun gh+/FoxShell/packages/kodnet/2.0.3.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.4.kwc
 ```
 
 That's all, you are ready to use. See the examples

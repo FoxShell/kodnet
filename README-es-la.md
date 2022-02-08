@@ -26,7 +26,7 @@ Hacer software libre es complicado, y requiere tiempo. Por favor considere donar
 > No necesita permisos de administrador. Puede ser ejecutado como usuario normal.
 
 ```bash
-kwrun gh+/FoxShell/packages/kodnet/2.0.3.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.4.kwc
 ```
 
 Es todo, está listo para usar. Vea los ejemplos
