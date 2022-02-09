@@ -47,15 +47,15 @@ Read the [DOCS.md](./DOCS.md)
 
 - NOW SUPPORTS VFP ADVANCED 64 Bits!
 - Access any .NET component even if it is not marked for interop [ComVisible].
-- You do not need to register or install the component
-- Call any method, property directly like any other object FoxPro
-- Calling the constructor of a class with parameters is possible
-- Call any method overload. kodnet select the best, according to your parameters
+- You do not need to register or install your components.
+- Call any method, property directly like any other object in VisualFoxPro.
+- Calling the constructor of a class with parameters is possible.
+- Call any method overload. kodnet select the best, according to your parameters.
 - Support for any non-native .NET type
 - Access to static members, including Structs, Enums, Generics, etc.
-- Access .NET arrays easily using Get and Set methods
+- Access .NET arrays easily using Get and Set methods.
 - You can pass an object FoxPro and read it from a .NET method using dynamic.
-- Multithread support
+- Multithread support.
 - Include visual .NET controls within your VisualFoxPro forms and access your members like any other .NET class.
 - Support for adding/deleting .NET event handlers (delegates)
 - Great performance in method calls, properties, because internally it doesn't use Reflection, instead uses CallSite (the same way used by ```dynamic``` keyword in C#)
@@ -70,8 +70,6 @@ Read the [DOCS.md](./DOCS.md)
 - Compile C# code dynamically
 - Support for including visual controls from .NET to VFP forms
 - Up to 10x times faster in instance method calls, and still faster on static method calls
-
-
 
 
 
