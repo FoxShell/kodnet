@@ -11,14 +11,6 @@ If you want see C# source code:
 
 
 
-# Be an sponsor
-
-Make open source software is hard, and need many time. Please consider donate, and if you want write us to developer@kodhe.com, and your name will appear here
-
-* Donate to paypal [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XTUTKMVWCVQCJ&source=url)
-
-
-
 # Installation of kodnet 
 
 1. Install [kwruntime/core](https://github.com/kwruntime/core/blob/main/INSTALL.md)
@@ -82,3 +74,10 @@ Read the [DOCS.md](./DOCS.md)
 If you have an specific requirenment, or want integrate this library in your project, contact us
 
  - developer@kodhe.com
+
+
+# Be an sponsor
+
+Make open source software is hard, and need many time. Please consider donate, and if you want write us to developer@kodhe.com, and your name will appear here
+
+* Donate to paypal [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XTUTKMVWCVQCJ&source=url)

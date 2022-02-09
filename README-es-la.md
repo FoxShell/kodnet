@@ -9,13 +9,6 @@ Si desea ver el código C# encargado de la comunicación:
 
 
 
-# Sea un patrocinador
-
-Hacer software libre es complicado, y requiere tiempo. Por favor considere donar, y escríbanos a developer@kodhe.com si desea que su nombre aparezca aquí.
-
-* Paypal: [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XTUTKMVWCVQCJ&source=url)
-
-
 
 # Instalación de kodnet 
 
@@ -76,3 +69,10 @@ Lea [DOCS.md](./DOCS.md)
 Kodnet puede realizar cualquier cosa. Pero si usted no sabe como implementarlo, contáctenos y cotizamos
 
  - developer@kodhe.com
+
+
+# Sea un patrocinador
+
+Hacer software libre es complicado, y requiere tiempo. Por favor considere donar, y escríbanos a developer@kodhe.com si desea que su nombre aparezca aquí.
+
+* Paypal: [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XTUTKMVWCVQCJ&source=url)
