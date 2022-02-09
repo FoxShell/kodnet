@@ -119,7 +119,7 @@ public byte[] getBytesFromString (string s);
 Methods for _screen.kodnetManager
 
 ```foxpro
-* Crear un evento (delegado) .NET enlazado a un objecto y método VFP
+* Create an .NET event (delegate) bound to a VFP Target+method
 Function createEventHandler(target as Object, method as String, className as string) as System.Event
 endfunc 
 
@@ -136,7 +136,7 @@ EndFunc
 Methods for _screen.kodnetManager.API
 
 ```foxpro
-* Agrega un control de Windows Forms .NET a un formulario VFP
+* Embed a .NET Windows.Forms Control into VFP Form
 Function setParent(control as System.IntPtr, form as Form) as VOID
 endfunc 
 
