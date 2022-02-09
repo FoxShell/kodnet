@@ -10,6 +10,11 @@ If you want see C# source code:
  - [jxshell.dotnet4](https://github.com/kodhework/jxshell.dotnet4)
 
 
+# Requirements
+
+1. VFP9 or superior 
+2. NET Framework 4.5 or superior 
+
 
 # Installation of kodnet 
 
@@ -24,12 +29,6 @@ kwrun gh+/FoxShell/packages/kodnet/2.0.4.kwc
 ```
 
 That's all, you are ready to use. See the examples
-
-
-# Requirements
-
-1. VFP9 or superior 
-2. NET Framework 4.5 or superior 
 
 
 # How to use

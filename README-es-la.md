@@ -8,6 +8,10 @@ Si desea ver el código C# encargado de la comunicación:
  - [jxshell.dotnet4](https://github.com/kodhework/jxshell.dotnet4)
 
 
+# Requerimientos
+
+1. VFP9 o superior 
+2. NET Framework 4.5 o superior (NET Core no soportado todavía)
 
 
 # Instalación de kodnet 
@@ -24,11 +28,6 @@ kwrun gh+/FoxShell/packages/kodnet/2.0.4.kwc
 
 Es todo, está listo para usar. Vea los ejemplos
 
-
-# Requerimientos
-
-1. VFP9 o superior 
-2. NET Framework 4.5 o superior (NET Core no soportado todavía)
 
 # Cómo usar
 
