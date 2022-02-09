@@ -2,7 +2,7 @@
 
 Versión en ESPAÑOL => [README-es-la.md](./README-es-la.md)
 
-kodnet allows use any .NET object/class/type from VFP9. 
+kodnet allows use any .NET object/class/type from VFP9 and VFP Advanced 32/64 bits.
 
 This project is a guide for install and use kodnet. Contains the distributable files, and the info required for include in your VFP project.
 
