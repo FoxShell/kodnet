@@ -37,6 +37,10 @@ Es todo, está listo para usar. Vea los ejemplos
 1. VFP9 o superior 
 2. NET Framework 4.5 o superior (NET Core no soportado todavía)
 
+# Cómo usar
+
+Lea [DOCS.md](./DOCS.md)
+
 
 # Features
 
@@ -65,13 +69,6 @@ Es todo, está listo para usar. Vea los ejemplos
 - Compilar código C# dinámicamente.
 - Soporte para incluir controles visuales dentro de formularios VFP.
 - Mayor rendimiento. Más eficiente en obtener/asignar propiedades, campos y hasta 10 veces más eficiente en llamadas a métodos.
-
-
-
-# Cómo usar
-
-Lea [DOCS.md](./DOCS.md)
-
 
 
 # ¿Necesita un trabajo específico?

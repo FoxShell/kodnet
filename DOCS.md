@@ -6,8 +6,6 @@
 do (getenv("Userprofile") + "\kawix\shide.lib\kodnet\kodnet.prg")
 ```
 
-	If you get a message that says Unable to load CLR it's probably because Windows blocks files downloaded from the Internet. To do this right-click on the .DLL libraries distributed with kodnet and click unlock.
-
 
 Now you can start using:
 

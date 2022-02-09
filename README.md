@@ -40,6 +40,11 @@ That's all, you are ready to use. See the examples
 2. NET Framework 4.5 or superior 
 
 
+# How to use
+
+Read the [DOCS.md](./DOCS.md)
+
+
 # Features
 
 - NOW SUPPORTS VFP ADVANCED 64 Bits!
@@ -69,10 +74,6 @@ That's all, you are ready to use. See the examples
 - Up to 10x times faster in instance method calls, and still faster on static method calls
 
 
-
-# How to use
-
-Read the [DOCS.md](./DOCS.md)
 
 
 
