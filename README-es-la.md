@@ -18,7 +18,7 @@ Si desea ver el código C# encargado de la comunicación:
 
 1. Instalar [kwruntime/core](https://github.com/kwruntime/core/blob/main/INSTALL.md)
 
-2. Instalar la librería kodnet. Ejecute en una ventana cmd:
+2. Ejecute el siguiente comando en una ventana de ```cmd```.
 
 > No necesita permisos de administrador. Puede ser ejecutado como usuario normal.
 

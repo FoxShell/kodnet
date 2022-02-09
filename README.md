@@ -20,7 +20,7 @@ If you want see C# source code:
 
 1. Install [kwruntime/core](https://github.com/kwruntime/core/blob/main/INSTALL.md)
 
-2. Install the Kodnet library. Execute in cmd the following command: 
+2. Execute in ```cmd```the following command:
 
 > No required admin permissions. You can execute as normal user.
 
