@@ -58,7 +58,7 @@ Read the [DOCS.md](./DOCS.md)
 - Multithread support
 - Include visual .NET controls within your VisualFoxPro forms and access your members like any other .NET class.
 - Support for adding/deleting .NET event handlers (delegates)
-- Great performance in method calls, properties, because internally it doesn't use Reflection but uses CallSite (the methodology it uses internally dynamic in C#)
+- Great performance in method calls, properties, because internally it doesn't use Reflection but uses CallSite (logic use by ```dynamic```keyword in C#)
 
 
 # Advantages over wwDotnetBridge
