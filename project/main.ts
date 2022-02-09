@@ -47,13 +47,6 @@ async function parseRegedit(content: string){
 					value: pvalue
 				}
 			}
-			
-
-			
-			
-
-			
-
 		}
 		else if(line.startsWith("[")){
 			let name = line.substring(1, line.length - 1)

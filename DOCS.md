@@ -9,7 +9,7 @@ do (getenv("Userprofile") + "\kawix\shide.lib\kodnet\kodnet.prg")
 	If you get a message that says Unable to load CLR it's probably because Windows blocks files downloaded from the Internet. To do this right-click on the .DLL libraries distributed with kodnet and click unlock.
 
 
-Now you can start using: 
+Now you can start using:
 
 ```foxpro
 * you can now access to kodnet using _screen.kodnet
@@ -41,6 +41,208 @@ m.int32Class= _screen.kodnet.getStaticWrapper("System.Int32")
 ? m.int32Class.MinValue 
 
 ```
+
+
+# Available methods
+
+Methods for ```_screen.kodnet``` 
+
+```csharp 
+
+/**
+* wrapperStatic = Represents a .NET Framework static class 
+                  It's used for access to static methods, properties and fields, and for construct new objects
+                  For example: uri = _screen.kodnet.getStaticWrapper("System.Uri").construct("https://google.com")
+
+* wrapper = Represents a .NET Framework instance object 
+            It's used for access to instance methods, properties and fields.
+            For example: ?m.uri.wrapperStatic
+*/
+
+/**
+* get a object representing the static class
+*/
+public wrapperStatic getStaticWrapper (string typeName);
+
+/**
+* get a System.Type object from Object
+*/
+public wrapper getTypeFromObject (object o);
+
+/**
+* get a System.Type object from 
+*/
+public object getTypeFromString (string name);
+
+/**
+* get a UTF8 string as object (from VFP is like and object, for kodnet is a string).
+* You can use all methods and properties from string class
+*/
+public object getUTF8WrappedString (object s);
+
+/**
+* load an assembly with full qualified name
+*/
+public void loadAssembly (string name);
+
+/**
+* load an assembly file
+*/
+public void loadAssemblyFile (string file);
+
+/**
+* load an assembly with partial name. Example: System.Drawing
+* Deprecated in .NET Framework
+*/
+public void loadAssemblyPartialName (string name);
+
+
+/**
+* get default value for a class. It's good for value types as DateTime for example
+*/
+public wrapper getDefaultFor (object type);
+
+/*
+* implicit cast and object to other type
+* Good when you need pass parameters with specific type
+* For example: _screen.kodnet.getObjectAsType(12, "System.Single")
+*/
+public wrapper getObjectAsType (object o, string type);
+public wrapper getObjectAsType (object o, Type type);
+
+/*
+* convert string WINDOWS-1252 encoding to byte[]
+*/
+public byte[] getBytesFromString (string s);
+
+```
+
+
+Methods for _screen.kodnetManager
+
+```foxpro
+* Crear un evento (delegado) .NET enlazado a un objecto y método VFP
+Function createEventHandler(target as Object, method as String, className as string) as System.Event
+endfunc 
+
+* Add alpha channel to rgb. Convert rgb to argb
+Function rgbtoArgb(color as number, alpha as number) as Number
+EndFunc
+
+* Block VFP thread until .NET async method finish
+Function await(task as System.Threading.Task) as VOID
+EndFunc
+
+``` 
+
+Methods for _screen.kodnetManager.API
+
+```foxpro
+* Agrega un control de Windows Forms .NET a un formulario VFP
+Function setParent(control as System.IntPtr, form as Form) as VOID
+endfunc 
+
+* Add alpha channel to rgb. Convert rgb to argb
+Function rgbtoArgb(color as number, alpha as number) as Number
+EndFunc
+
+* Block VFP thread until .NET async method finish
+Function await(task as System.Threading.Task) as VOID
+EndFunc
+
+``` 
+
+
+
+
+# Access to static methods/properties/fields
+
+```foxpro
+int32 = _screen.kodnet.getStaticWrapper("System.Int32")
+?int32.MaxValue
+?int32.MinValue
+
+environ = _screen.kodnet.getStaticWrapper("System.Environment")
+?environ.GetEnvironmentVariable("USERPROFILE")
+```
+
+
+# Construct objects
+
+```foxpro
+uri = _screen.kodnet.getStaticWrapper("System.Uri").construct("https://github.com")
+```
+
+## Generic objects
+
+```foxpro
+dictionaryClass = _screen.kodnet.getStaticWrapper("System.Collections.Generic.Dictionary<System.String, System.Object>")
+dict = dictionaryClass.construct()
+dict.item["name"] = "James"
+dict.item["number"] = 1
+
+* This throws error beacuse string is expected as index
+dict.item[10] = 1
+``` 
+
+
+# Load Assemblies 
+
+```foxpro
+_screen.kodnet.loadAssemblyPartialName("System.Drawing")
+_screen.kodnet.loadAssemblyPartialName("System.Windows.Forms")
+
+messageBoxClass = _screen.kodnet.getStaticWrapper("System.Windows.Forms.MessageBox")
+m.messageBoxClass.show("Mensaje de prueba")
+``` 
+
+# Default value
+
+Valued types can be instantiated using ```getDefaultFor```
+
+```foxpro
+_screen.kodnet.loadAssemblyPartialName("System.Drawing")
+size = _screen.kodnet.getDefaultFor("System.Drawing.Size")
+size.Width = 1280
+size.Height = 720
+``` 
+
+# Cast values
+
+Sometimes, you need cast values, or get a "wrapped object" to specific type. For example, in VFP all numbers are just that, numbers. In .NET numbers can be: ```System.Single```, ```System.Int16```, ```System.Int32```, ```System.Double```, ```System.Int64```, etc. 
+
+If you need a parameter with specific type you can cast values:
+
+```foxpro
+custom = _screen.kodnet.getStaticWrapper("Custom.Class")
+* custom method requiring a System.Int64 (long) parameter:
+custom.CustomMethod(_screen.kodnet.getObjectAsType(10, "System.Int64"))
+```
+
+# Delegates
+
+In kodnet you can use delegates/events without registering VFP Components. 
+
+```foxpro
+target= CREATEOBJECT("func_callback")
+Func1= _screen.kodnet.getStaticWrapper("System.Func<System.String,System.Int32>").construct(m.target,"callback")
+
+define class func_callback as custom
+	function callback()
+		* your code here
+	endfunc 
+enddefine
+```
+
+For events use special method: ```_screen.kodnetManager.createEventHandler```
+
+```foxpro 
+downloadCallback=_screen.kodnetManager.createeventhandler(m.downloadCallbackObj, "finished", "System.ComponentModel.AsyncCompletedEventHandler")
+``` 
+
+
+You can see full example at end of this document.
+
 
 
 # Some examples 
@@ -88,6 +290,8 @@ See the sample [samples/downloadfileasync.prg](./samples/downloadfileasync.prg)
 ```foxpro
 LOCAL netClientClass, netClient, uriClass, downloadCallbackObj, downloadCallback, file 
 
+do (getenv("Userprofile") + "\kawix\shide.lib\kodnet\kodnet.prg")
+
 * select a file
 file= GETFILE()
 IF EMPTY(m.file)
@@ -100,11 +304,18 @@ m.netClient= m.netClientClass.construct()
 
 
 
+* THIS IS NOW REQUIRED FOR ALMOST ALL WEBSITES
+ServicePointManager = _screen.kodnet.getStaticWrapper("System.Net.ServicePointManager")
+* TLS12 = 3072
+ServicePointManager.SecurityProtocol = 3072
 
 
 downloadCallbackObj= CREATEOBJECT("downloadCallback")
+
 * create a delegate that point to VisualFoxPro function
 downloadCallback=_screen.kodnetManager.createeventhandler(m.downloadCallbackObj, "finished", "System.ComponentModel.AsyncCompletedEventHandler")
+m.downloadCallbackObj.event_finished = m.downloadCallback
+
 * add the event handler 
 m.netClient.add_DownloadFileCompleted(m.downloadCallback)
 
@@ -117,9 +328,16 @@ return
 
 
 DEFINE CLASS downloadCallback  as Custom 
+	event_finished = null
 	FUNCTION finished(sender, args)
-		* avoid memory leaks (this is only required for objects not forms)
-		this._event.destroy()
+		
+		* dispose delegate to avoid memory leaks
+		if !isnull(this.event_finished)
+			this.event_finished.dispose()
+		endif
+		
+		public obj 
+		obj = this
 		IF !ISNULL(args.Error)
 			MESSAGEBOX("Failed download: " + args.Error.Message, 48, "")
 		ELSE 
