@@ -1,12 +1,9 @@
 * call this file at start of application
 do (getenv("Userprofile") + "\kawix\shide.lib\kodnet\kodnet.prg")
 
-
 * KODNET (contacto@kodhe.com)
 * Download File asynchronous example
-
 do fullpath("kodnet.prg")
-
 LOCAL netClientClass, netClient, uriClass, downloadCallbackObj, downloadCallback, file 
 
 * select a file
@@ -20,21 +17,33 @@ netClientClass= _screen.kodnet.getStaticWrapper("System.Net.WebClient")
 m.netClient= m.netClientClass.construct()
 
 
-
+* THIS IS NOW REQUIRED FOR ALMOST ALL WEBSITES
+ServicePointManager = _screen.kodnet.getStaticWrapper("System.Net.ServicePointManager")
+* TLS12 = 3072
+ServicePointManager.SecurityProtocol = 3072
 
 
 downloadCallbackObj= CREATEOBJECT("downloadCallback")
+
 * create a delegate that point to VisualFoxPro function
 downloadCallback=_screen.kodnetManager.createeventhandler(m.downloadCallbackObj, "finished", "System.ComponentModel.AsyncCompletedEventHandler")
+
 * add the event handler 
 m.netClient.add_DownloadFileCompleted(m.downloadCallback)
+
+
 
 * this method is a .NET async method, this call will complete without finish the download
 m.netClient.DownloadFileAsync(uriClass.construct("https://raw.githubusercontent.com/voxsoftware/kwcore-static/master/win32/12.11.1.ia32.tar.gz"), m.file)
 
+
 * this executes before finish for demostrate that method is called async
-? "Download has started. Running in background"
+? "Download has started. Running in background."
+? "If you see this message before 'download finished', async mode is working ok"
+
 return 
+
+
 
 DEFINE CLASS downloadCallback  as Custom 
 	FUNCTION finished(sender, args)
@@ -46,3 +55,4 @@ DEFINE CLASS downloadCallback  as Custom
 		ENDIF 
 	ENDFUNC 
 ENDDEFINE 
+
