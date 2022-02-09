@@ -350,7 +350,7 @@ ENDDEFINE
 
 ### Compile c# code 
 
-kodnet allow C# code dompilation. Take a look in this example
+kodnet allow C# code compilation. Take a look in this example
 
 ```foxpro 
 TEXT TO m.code noshow

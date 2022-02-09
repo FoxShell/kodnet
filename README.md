@@ -47,10 +47,10 @@ Read the [DOCS.md](./DOCS.md)
 
 - NOW SUPPORTS VFP ADVANCED 64 Bits!
 - Access any .NET component even if it is not marked for interop [ComVisible].
-- You do not need to register or install your components.
+- You do not need to register or install your components (no COM registration required).
 - Call any method, property directly like any other object in VisualFoxPro.
 - Calling the constructor of a class with parameters is possible.
-- Call any method overload. kodnet select the best, according to your parameters.
+- Call any method overload. kodnet select the best, baseed to your parameters.
 - Support for any non-native .NET type
 - Access to static members, including Structs, Enums, Generics, etc.
 - Access .NET arrays easily using Get and Set methods.
