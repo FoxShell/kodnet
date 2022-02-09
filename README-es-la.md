@@ -29,6 +29,13 @@ kwrun gh+/FoxShell/packages/kodnet/2.0.4.kwc
 Es todo, está listo para usar. Vea los ejemplos
 
 
+# ¿Qué puede hacer kodnet?
+
+Cualquiercosa, todo lo que se imagen puede ser hecho con kodnet! Son bienvenidos más códigos/librerías basados en kodnet.
+
+- [QRCoder](https://github.com/FoxShell/qrcoder) Create QR Codes in PNG format with VFP
+
+
 # Cómo usar
 
 Lea [DOCS.md](./DOCS.md)

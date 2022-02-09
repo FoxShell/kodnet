@@ -96,9 +96,10 @@ public void loadAssemblyPartialName (string name);
 
 
 /**
-* get default value for a class. It's good for value types as DateTime for example
+* get default value for a class. It's good for Structs like System.DateTime for example
 */
-public wrapper getDefaultFor (object type);
+public wrapper getDefaultFor (string type);
+public wrapper getDefaultFor (Type type);
 
 /*
 * implicit cast and object to other type
@@ -196,7 +197,7 @@ m.messageBoxClass.show("Mensaje de prueba")
 
 # Default value
 
-Valued types can be instantiated using ```getDefaultFor```
+Struct types can be instantiated using ```getDefaultFor```
 
 ```foxpro
 _screen.kodnet.loadAssemblyPartialName("System.Drawing")
