@@ -134,11 +134,18 @@ async function main(){
 		else{
 			console.info("> Register library in Admin mode")
 			let regfile1 = Path.join(__dirname, "reg", "admin.reg")			
+			let regfile2 = Path.join(__dirname, "reg", "admin6432.reg")
 			let content = await fs.promises.readFile(regfile1,'utf8')
 			while(content.indexOf("${file_uri}") >= 0){
 				content = content.replace("${file_uri}", uri)
 			}
-			regs.push(await parseRegedit(content))			
+			regs.push(await parseRegedit(content))	
+			
+			content = await fs.promises.readFile(regfile2,'utf8')
+			while(content.indexOf("${file_uri}") >= 0){
+				content = content.replace("${file_uri}", uri)
+			}
+			regs.push(await parseRegedit(content))
 		}
 
 
