@@ -1,5 +1,5 @@
-import {Packager} from 'github://kwruntime/std@1.1.18/package/compiler/pack.ts'
-import {Builder} from 'github://kwruntime/std@1.1.18/package/compiler/build.ts'
+import {Packager} from '../../Kodhe/kwruntime/std/package/compiler/pack.ts'
+import {Builder} from '../../Kodhe/kwruntime/std/package/compiler/build.ts'
 import Path from 'path'
 import fs from 'fs'
 main()
@@ -13,7 +13,7 @@ async function main(){
 		workingFolder,
 		root: Path.join(__dirname, "project"),
 		follow: true,
-		hash: "com.kodhe.kodnet-2.0.5",
+		hash: "com.kodhe.kodnet-2.0",
 		useDataFolder: true,
 		main: "main.ts"
 	})
@@ -21,6 +21,6 @@ async function main(){
 	await packer.add([
 		Path.join(__dirname, "project")
 	])
-	await packer.writeTo(Path.join(workingFolder, "kodnet-2.0.5.kwc"))
+	await packer.writeTo(Path.join(workingFolder, "kodnet-2.0.0.kwc"))
 
 }

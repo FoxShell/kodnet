@@ -49,6 +49,10 @@ DEFINE CLASS jxshell_dotnet4ui as session
 	ENDFUNC 
 ENDDEFINE 
 
+
+
+
+
 * THIS CLASSES (kodnet, kodnetWrapper) ARE FOR A EXPERIMENT TRYING TO INCREASE PERFORMANCE IN LOADING TIME
 * AND REALLY CAN INCREASE PERFORMANCE ON LOADING TIME, BUT DECREASES ON INVOKING METHODS
 DEFINE CLASS kodnetWrapper as session  
@@ -166,6 +170,8 @@ DEFINE CLASS jxshell_dotnet4 as Session
 	API = null
 	ui= null
 	initedUi= .f.
+	_shideloaded = .f.
+	shide = .null.
 	
 	FUNCTION init()
 		this.API= CREATEOBJECT("JXSHELLDOTNET4_WIN32API")
@@ -203,6 +209,27 @@ DEFINE CLASS jxshell_dotnet4 as Session
 		ENDIF 
 		RETURN obj 
 	ENDFUNC 
+	
+	FUNCTION CreateShide()
+		if !this._shideloaded
+			_screen.kodnet.loadAssemblyFile(ADDBS(this.path) + "lib\shide.dll")
+		ENDIF 
+		
+		local executorClass, executor
+		executorClass =_screen.kodnet.getStaticWrapper("Shide.Executor")
+		executor = executorClass.construct()
+		executor.start(ADDBS(this.path) + "shide.ts " +  allt(STR(_vfp.ProcessId )))
+		return m.executor 
+	ENDFUNC 
+	
+	FUNCTION getShide()
+		if ISNULL(this.shide)
+			this.shide = this.createShide()
+		ENDIF 
+		return this.shide 
+	ENDFUNC 
+	
+	
 	FUNCTION initUi()
 		if(!this.initedUi)
 			_screen.dotnet4.loadAssemblyPartialName("System")
@@ -291,8 +318,94 @@ DEFINE CLASS jxshell_dotnet4 as Session
 		if(!EMPTY(m.er))
 			ERROR m.er1, m.er
 		ENDIF 			
-
 	ENDFUNC 
+
+	FUNCTION dictionary(keyType as string, valueType as string)
+		IF PCOUNT() < 1
+			keyType = "System.String"
+		ENDIF
+		IF PCOUNT() < 2
+			valueType = "System.Object"
+		ENDIF 
+		RETURN _screen.kodnet.getStaticWrapper("System.Collections.Generic.Dictionary<"+m.keyType+","+m.valueType+">").construct()
+	ENDFUNC 
+	
+	FUNCTION objectArray(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20)
+		LOCAL list 
+		LIST = this._list(PCOUNT(), m.p1, m.p2, m.p3, m.p4, m.p5, m.p6, m.p7, m.p8, m.p9, m.p10, m.p11, m.p12, m.p13, m.p14, m.p15, m.p16, m.p17, m.p18, m.p19, m.p20)
+		RETURN m.list.toarray()
+	ENDFUNC 
+	
+	FUNCTION list(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20)
+		RETURN this._list(PCOUNT(), m.p1, m.p2, m.p3, m.p4, m.p5, m.p6, m.p7, m.p8, m.p9, m.p10, m.p11, m.p12, m.p13, m.p14, m.p15, m.p16, m.p17, m.p18, m.p19, m.p20)
+	ENDFUNC 
+	
+	FUNCTION _list(count, p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20)
+		LOCAL arr
+		arr = _screen.kodnet.getStaticWrapper("System.Collections.Generic.List<System.Object>").construct()
+		IF m.count > 0
+			arr.add(m.p1)
+		ENDIF 
+		IF m.count > 1
+			arr.add(m.p2)
+		ENDIF 
+		IF m.count > 2
+			arr.add(m.p3)
+		ENDIF 
+		IF m.count > 3
+			arr.add(m.p4)
+		ENDIF 
+		IF m.count > 4
+			arr.add(m.p5)
+		ENDIF 
+		IF m.count > 5
+			arr.add(m.p6)
+		ENDIF 
+		IF m.count > 6
+			arr.add(m.p7)
+		ENDIF 
+		IF m.count > 7
+			arr.add(m.p8)
+		ENDIF 
+		IF m.count > 8
+			arr.add(m.p9)
+		ENDIF 
+		IF m.count > 9
+			arr.add(m.p10)
+		ENDIF 
+		IF m.count > 10
+			arr.add(m.p11)
+		ENDIF 
+		IF m.count > 11
+			arr.add(m.p12)
+		ENDIF 
+		IF m.count > 12
+			arr.add(m.p13)
+		ENDIF 
+		IF m.count > 13
+			arr.add(m.p14)
+		ENDIF 
+		IF m.count > 14
+			arr.add(m.p15)
+		ENDIF 
+		IF m.count > 15
+			arr.add(m.p16)
+		ENDIF 
+		IF m.count > 16
+			arr.add(m.p17)
+		ENDIF 
+		IF m.count > 17
+			arr.add(m.p18)
+		ENDIF 
+		IF m.count > 18
+			arr.add(m.p19)
+		ENDIF 
+		IF m.count > 19
+			arr.add(m.p20)
+		ENDIF 
+		RETURN m.arr
+	ENDFUNC 
+
 	
 	FUNCTION await(toTask)
 		LOCAL lcERR 

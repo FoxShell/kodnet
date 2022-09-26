@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"module": "es2020",
+		"target": "esnext",
+		"outDir": "out",
+		"lib": [
+			"es6",
+			"dom"
+		],
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"baseUrl": "/",
+		"paths": {
+			"*.ts": ["*"]
+		},
+		"plugins": [{ "name": "kawix-runtime-plugin" }]
+	},
+	"exclude": [
+		"node_modules",
+		".vscode-test"
+	]
+}

@@ -1,6 +1,8 @@
 # kodnet 
 
-kodnet permite usar cualquier objeto/clase/tipo de .NET framework desde VFP9 y VFP Advanced 32/64 bits.
+- kodnet permite usar cualquier objeto/clase/tipo de .NET framework desde VFP9 y VFP Advanced 32/64 bits.
+
+- kodnet permite además ejecutar código javascript/typescript con [kwruntime/core](https://github.com/kwruntime/core/blob/main/INSTALL.md) desde VFP9 y VFP Advanced 32/64 bits.
 
 Este proyecto es una guía para instalar y usar kodnet. Contiene los archivos que se distribuyen para que funcione la librería dentro de su proyecto. 
 
