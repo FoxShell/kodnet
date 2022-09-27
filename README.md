@@ -30,7 +30,7 @@ If you want see C# source code:
 > No required admin permissions. You can execute as normal user.
 
 ```bash	
-kwrun gh+/FoxShell/packages/kodnet/2.0.7-1.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.7-2.kwc
 ```
 
 That's all, you are ready to use. See the examples
