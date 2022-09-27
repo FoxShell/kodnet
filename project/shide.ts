@@ -20,10 +20,12 @@ if(!fs.existsSync(userData)){
 	fs.mkdirSync(userData)
 }
 
+/*
 userData=Path.join(userData, String(process.pid))
 if(!fs.existsSync(userData)){
 	fs.mkdirSync(userData)
 }
+*/
 
 
 export class Program{
