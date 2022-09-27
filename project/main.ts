@@ -86,7 +86,11 @@ async function main(){
 				})
 			}catch(e){}
 		}
-		await fs.promises.symlink(Path.join(__dirname), kodnet, "junction")
+
+		await fs.promises.cp(Path.join(__dirname), kodnet,{
+			recursive: true
+		})
+		//await fs.promises.symlink(Path.join(__dirname), kodnet, "junction")
 
 
 		let platform = Os.platform()

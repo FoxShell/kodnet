@@ -13,7 +13,7 @@ async function main(){
 		workingFolder,
 		root: Path.join(__dirname, "project"),
 		follow: true,
-		hash: "com.kodhe.kodnet-2.0.7",
+		hash: "com.kodhe.kodnet-2.0.7-5",
 		useDataFolder: true,
 		main: "main.ts"
 	})
