@@ -81,10 +81,12 @@ async function main(){
 		let kodnet = Path.join(ShideLibDir, "kodnet")
         if(fs.existsSync(kodnet)){
 			try{
-				await fs.unlinkSync(kodnet)
+				await fs.promises.rm(kodnet, {
+					recursive: true
+				})
 			}catch(e){}
 		}
-		fs.symlinkSync(Path.join(__dirname), kodnet, "junction")
+		await fs.promises.symlink(Path.join(__dirname), kodnet, "junction")
 
 
 		let platform = Os.platform()
