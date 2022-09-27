@@ -27,7 +27,7 @@ Si desea ver el código C# encargado de la comunicación:
 > No necesita permisos de administrador. Puede ser ejecutado como usuario normal.
 
 ```bash
-kwrun gh+/FoxShell/packages/kodnet/2.0.7.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.7-1.kwc
 ```
 
 Es todo, está listo para usar. Vea los ejemplos
@@ -35,7 +35,7 @@ Es todo, está listo para usar. Vea los ejemplos
 
 # ¿Qué puede hacer kodnet?
 
-Cualquiercosa, todo lo que se imagen puede ser hecho con kodnet! Son bienvenidos más códigos/librerías basados en kodnet.
+Cualquiercosa, todo lo que se imagine puede ser hecho con kodnet! Son bienvenidos más códigos/librerías basados en kodnet.
 
 - [QRCoder](https://github.com/FoxShell/qrcoder) Create QR Codes in PNG format with VFP
 
@@ -48,7 +48,7 @@ Lea [DOCS.md](./DOCS.md)
 # Features
 
 - AHORA SOPORTA VFP ADVANCED 64 Bits!
-- Acceda a cualquier componente .NET Incluso si ha sido marcado para intercomunicación []ComVisible]
+- Acceda a cualquier componente .NET Incluso si no ha sido marcado para intercomunicación [ComVisible]
 - No necesita registrar o instalar cada componente
 - Llame a cualquier método, propiedad, directamente como cualquier otro objeto de VisualFoxPro
 - Llame un constructor de clase con parámetros
@@ -66,7 +66,7 @@ Lea [DOCS.md](./DOCS.md)
 # Ventajas sobre wwDotnetBridge
 
 - Código más fácil de escribir! Llamadas a métodos, obtener/asignar propiedades, campos usando directamente el nombre.
-- Soporte para  crear delegados y  añadir/eliminar eventos. SÍ! kodnet soporta DELEGADOS sin registrar ningún componente VFP.
+- Soporte para  crear delegados y  añadir/eliminar eventos. Sí! kodnet soporta DELEGADOS sin registrar ningún componente VFP.
 - Crear instancias de clases genéricas.
 - Soporte real para código asíncrono.
 - Compilar código C# dinámicamente.
