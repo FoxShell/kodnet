@@ -8,6 +8,7 @@ import fs from 'fs'
 import Path from 'path'
 import Os from 'os'
 import crypto from 'crypto'
+import stringify from 'npm://safe-json-stringify@1.2.0'
 
 
 let userData = Path.join(Os.homedir(),".kawi","user-data")
@@ -28,6 +29,14 @@ if(!fs.existsSync(userData)){
 */
 
 
+let logFile = Path.join(userData, String(process.pid) + ".log")
+let logStream = null
+
+
+
+
+
+
 export class Program{
 
 	#modules = new Map<string, any>()
@@ -38,6 +47,12 @@ export class Program{
 			if(kawix.appArguments[1]){
 				this.#startCheckProcess(Number(kawix.appArguments[1]))
 			}
+
+			if(kawix.appArguments.indexOf("uselog") >= 0){
+				logStream = fs.createWriteStream(logFile)
+				logStream.on("error", console.error)
+			}
+
 			await new Program().main()
 		}catch(e){
 			console.info("##", JSON.stringify({
@@ -101,7 +116,11 @@ export class Program{
 
 
 	#write(cmd: any){
-		console.info("##", JSON.stringify(cmd))
+		let str = stringify(cmd)
+		console.info("##", str)
+
+		if(logStream)
+			logStream.write("## " + str + "\n")
 	}
 
 	async #execute(line: string){
@@ -120,7 +139,9 @@ export class Program{
 				console.info("Received cmd:", cmd)
 				if(cmd.type == "task"){
 
-					console.info("Task received::", cmd)
+					//console.info("Task received::", cmd)
+					if(logStream)
+						logStream.write("Task received:" +  stringify(cmd) + "\n")
 
 					try{
 						let mod = this.#modules.get(cmd.name)
@@ -161,6 +182,9 @@ export class Program{
 
 
 				if(cmd.type == "module"){
+
+					if(logStream)
+						logStream.write("Module creation:" + stringify(cmd) + "\n")
 
 					try{
 
