@@ -27,7 +27,7 @@ Si desea ver el código C# encargado de la comunicación:
 > No necesita permisos de administrador. Puede ser ejecutado como usuario normal.
 
 ```bash
-kwrun gh+/FoxShell/packages/kodnet/2.0.7-6.kwc
+kwrun gh+/FoxShell/packages/kodnet/2.0.8.kwc
 ```
 
 Es todo, está listo para usar. Vea los ejemplos
