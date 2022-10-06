@@ -1,8 +1,8 @@
 * IN YOUR APP PUT THIS LINES AT STARTUP
 * do (getenv("Userprofile") + "\kwruntime\kodnet\loader.prg")
-* _screen.kodnetLoader.load("v4")
+* _screen.kodnetLoader.load("v6")
 
-if type("_screen.kodnetLoader.v4") == "U" || isnull(_screen.kodnetLoader.v4)
+if type("_screen.kodnetLoader.v6") == "U" || isnull(_screen.kodnetLoader.v6)
 	* Execute init.prg
 	MESSAGEBOX("Por favor ejecute el archivo init.prg primero. (Please execute first init.prg)", 64, "")
 	return 
@@ -10,7 +10,7 @@ endif
 
 
 local kodnet 
-kodnet = _screen.kodnetLoader.v4 
+kodnet = _screen.kodnetLoader.v6
 
 
 TEXT TO m.code noshow

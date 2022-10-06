@@ -1,7 +1,7 @@
 * THIS FILE LOADS KODNET FOR .NET FRAMEWORK v4.5 OR SUPERIOR
 try 
     do (getenv("Userprofile") + "\kwruntime\kodnet\loader.prg")
-    _screen.kodnetLoader.load("v4")
+    _screen.kodnetLoader.load("v6")
 
     messagebox("Kodnet Loaded")
 
