@@ -807,6 +807,13 @@ netClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEvent
 ...
 ``` 
 
+See this examples: 
+
+- [downloadFileAsync.prg](../samples/v4/downloadfileasync.prg) with .NET Framework 
+- [delegate.prg](../samples/v4/delegate.prg) with .NET Framework
+- [delegate.prg](../samples/v6/delegate.prg) with .NET 6
+
+
 #### Creating objects of generic types
 
 It's easy with kodnet.
@@ -818,3 +825,11 @@ kodnetCOM = _screen.kodnetLoader.v6.COM
 m.kodnetCOM.getStaticWrapper("System.Collections.Generic.List<System.Int32>").construct()
 ```
 
+#### Compile C# code
+
+**kodnet** allows compile C# code, in .NET Framework v4.5+ or in .NET 6+
+
+See the samples: 
+
+- [compilecsharp.prg](../samples/v4/compilecsharp.prg) with .NET Framework
+- [compilecsharp.prg](../samples/v6/compilecsharp.prg) with .NET 6
