@@ -2,7 +2,7 @@
 * do (getenv("Userprofile") + "\kwruntime\kodnet\loader.prg")
 * _screen.kodnetLoader.load("v6")
 
-if type("_screen.kodnetLoader.v6") == "U" || isnull(_screen.kodnetLoader.v6)
+if type("_screen.kodnetLoader.v6") == "U" or isnull(_screen.kodnetLoader.v6)
 	* Execute init.prg
 	MESSAGEBOX("Por favor ejecute el archivo init.prg primero. (Please execute first init.prg)", 64, "")
 	return 
@@ -61,7 +61,9 @@ LOCAL engine
 * COMPILE C# CODE
 Local asem, test, person
 engine= m.kodnet.COM.getStaticWrapper("jxshell.csharplanguage").construct()
+messagebox("here1")
 m.engine.Runscript(m.code)
+messagebox("here2")
 asem = m.engine.getCompiledAssembly()
 m.kodnet.COM.loadAssembly(m.asem)
 

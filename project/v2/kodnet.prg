@@ -10,7 +10,7 @@ _screen.kodnet = _screen.kodnetHelper.create()
 _screen.kodnetManager =  _screen.kodnet.utils
 
 
-DEFINE CLASS Kodnet6Client as Custom 
+DEFINE CLASS KodnetClient as Custom 
 
 	kodnet = .null. 
 	kodnetUtils = .null.

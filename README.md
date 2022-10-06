@@ -18,7 +18,7 @@
 
 2. From CMD execute: 
 ```bash
-kwrun gh+/FoxShell/packages/kodnet/3.0.0.kwc
+kwrun gh+/FoxShell/packages/kodnet/3.0.1.kwc
 ``` 
 
 > NOTE: No required admin permissions. You can (and is recommended) execute as normal user.
