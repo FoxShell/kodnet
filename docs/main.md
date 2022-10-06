@@ -39,10 +39,11 @@ _screen.kodnetLoader.Load(version: string): KodnetVFPObject{
 
 ## KodnetCom object (kodnet.COM)
 
-`<img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" />` **Method GetStaticWrapper**
+<img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> **Method GetStaticWrapper**
 
 ```foxpro
 FUNCTION GetStaticWrapper(type as string) as Wrapper
+ENDFUNC 
 ```
 
 Returns an object (Wrapper) that is the representation of static .NET class. For example, with *static wrappers* you can construct .NET objects:
