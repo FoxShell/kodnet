@@ -13,7 +13,7 @@ async function main(){
 		workingFolder,
 		root: Path.join(__dirname, "project"),
 		follow: true,
-		hash: "com.kodhe.kodnet-2.0.8",
+		hash: "com.kodhe.kodnet-3.0",
 		useDataFolder: true,
 		main: "main.ts"
 	})
@@ -21,6 +21,6 @@ async function main(){
 	await packer.add([
 		Path.join(__dirname, "project")
 	])
-	await packer.writeTo(Path.join(workingFolder, "kodnet-2.0.8.kwc"))
+	await packer.writeTo(Path.join(workingFolder, "kodnet-3.0.0.kwc"))
 
 }

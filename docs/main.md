@@ -722,4 +722,99 @@ EndDefine
 
 ```
 
+---
+
+## More info about how use kodnet
+
+#### Exception control
+
+This is the best way to control kodnet exceptions
+
+```foxpro 
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetHelper = _screen.kodnetLoader.v6.Helper
+
+try     
+
+    * execute here a method that throws a .NET Exception
+    m.kodnetCOM.getStaticWrapper("System.TypeNonExistent")
+
+
+catch to ex 
+
+    * get the original .NET exception if available
+    if !isnull(m.kodnetHelper.lastException)
+        * show the full message
+        messagebox(m.kodnetHelper.lastException.toString(), 48, "Error")
+
+        * maybe access to some .NET Exception properties not availables in VFP Exception
+        * ?m.kodnetHelper.lastException.message
+        * ?m.kodnetHelper.lastException.stack
+        * ?m.kodnetHelper.lastException.innerException
+        * etc
+
+        m.kodnetHelper.lastException = .null.
+    else
+
+        messagebox(m.kodnetHelper.lastException.toString(), 48, "Error")
+
+    endif 
+
+endtry
+
+```
+
+
+#### Create event handlers
+
+Create event handlers is like creating delegates. Please see the section **KodnetHelper -> Delegate** 
+Also, for add events, you can call as a method: 
+
+```foxpro 
+* This example works with .NET Framework v4.5+ no tested on .NET Core
+kodnetCOM = _screen.kodnetLoader.v4.COM
+kodnetHelper = _screen.kodnetLoader.v4.Helper
+
+netClientClass= _screen.kodnet.getStaticWrapper("System.Net.WebClient")
+m.netClient= m.netClientClass.construct()
+
+
+downloadCallbackObj= CREATEOBJECT("downloadCallback")
+
+* create a delegate, please refer to KodnetHelper->Delegate section
+m.downloadCallback = m.kodnetCOM.getStaticWrapper("System.ComponentModel.AsyncCompletedEventHandler").construct(m.kodnetHelper.delegate( ... ))
+
+
+* ADD THE EVENT
+m.netClient.add_DownloadFileCompleted(m.downloadCallback)
+
+* REMOVE THE EVENT
+m.netClient.remove_DownloadFileCompleted(m.downloadCallback)
+
+``` 
+
+
+This part: 
+```foxpro
+m.netClient.add_DownloadFileCompleted(m.downloadCallback)
+``` 
+
+is equivalent in C# to this:
+
+```c#
+netClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(MyMethod);
+
+...
+``` 
+
+#### Creating objects of generic types
+
+It's easy with kodnet.
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+
+* construct and object System.Collections.Generic.List<int>
+m.kodnetCOM.getStaticWrapper("System.Collections.Generic.List<System.Int32>").construct()
+```
 
