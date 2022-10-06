@@ -39,6 +39,22 @@ _screen.kodnetLoader.Load(version: string): KodnetVFPObject{
 
 ## KodnetCom object (kodnet.COM)
 
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetBytesFromString**
+
+```foxpro
+FUNCTION GetBytesFromString(str as string) as System.Byte[]
+```
+
+Returns a .NET System.Byte[] object, from the VFP string. This method is equivalent to this in C# (.NET Framework v4.5): 
+
+```c#
+public byte[] GetBytesFromString(string str){
+    return System.Text.Encoding.GetEncoding("WINDOWS-1252").GetBytes(str);
+}
+```
+
+
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetStaticWrapper**
 
 ```foxpro
@@ -89,3 +105,6 @@ ConvertClass = m.kodnetCOM.getStaticWrapper("System.Convert")
 
 result = ConvertClass.ToBase64String(UTF8Encoding.GetBytes("Texto xxx"))
 ```
+
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetStaticWrapper**
