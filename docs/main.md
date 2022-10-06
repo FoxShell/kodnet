@@ -15,18 +15,16 @@ _screen.kodnetLoader.Load("v6")
 _screen.kodnetLoader.Load("v4")
 ```
 
-
-It's all.  Now you can use: 
+It's all.  Now you can use:
 
 ```foxpro
 kodnet = _screen.kodnetLoader.v6
 int = m.kodnet.COM.getStaticWrapper("System.Int32")
 ?m.int.maxValue
 
-``` 
+```
 
 ## Documentation
-
 
 ```typescript
 _screen.kodnetLoader.Load(version: string): KodnetVFPObject{
@@ -37,16 +35,14 @@ _screen.kodnetLoader.Load(version: string): KodnetVFPObject{
     // Helper => KodnetHelper Type 
     // Utils => KodnetUtils Type
 }
-``` 
-
+```
 
 ## KodnetCom object (kodnet.COM)
 
+`<img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" />` **Method GetStaticWrapper**
 
-
-<img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method
-```typescript
-GetStaticWrapper(type: string) : Wrapper
+```foxpro
+FUNCTION GetStaticWrapper(type as string) as Wrapper
 ```
 
 Returns an object (Wrapper) that is the representation of static .NET class. For example, with *static wrappers* you can construct .NET objects:
@@ -68,31 +64,28 @@ public class Program{
 
 Equivalent in kodnet:
 
-```foxpro 
+```foxpro
 kodnetCOM = _screen.kodnetLoader.v6.COM
 StringBuilderClass = m.kodnetCOM.getStaticWrapper("System.Text.StringBuilder")
 * xxx.construct is like new xxx in c#
 sb = StringBuilderClass.construct() 
 sb.AppendLine("Prueba, línea 1")
 sb.Append("Otro texto más")
-``` 
+```
 
-*static wrappers* also allows execute any static method, or access to any static property. Consider this example: 
+*static wrappers* also allows execute any static method, or access to any static property. Consider this example:
 
 ```c#
 // convert and string to base64 string representation
 string result = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("Texto xxx"));
-``` 
+```
 
-Equivalent in kodnet: 
+Equivalent in kodnet:
 
-```foxpro 
+```foxpro
 kodnetCOM = _screen.kodnetLoader.v6.COM
 UTF8Encoding = m.kodnetCOM.getStaticWrapper("System.Text.Encoding").UTF8
 ConvertClass = m.kodnetCOM.getStaticWrapper("System.Convert")
 
 result = ConvertClass.ToBase64String(UTF8Encoding.GetBytes("Texto xxx"))
-``` 
-
-
-
+```
