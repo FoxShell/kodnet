@@ -44,7 +44,7 @@ _screen.kodnetLoader.Load(version: string): KodnetVFPObject{
 
 
 
-[<img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" />] Method
+<img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method
 ```typescript
 GetStaticWrapper(type: string) : Wrapper
 ```
