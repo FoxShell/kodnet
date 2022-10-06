@@ -61,7 +61,9 @@ LOCAL engine
 * COMPILE C# CODE
 Local asem, test, person
 engine= m.kodnet.COM.getStaticWrapper("jxshell.csharplanguage").construct()
+messagebox("here1")
 m.engine.Runscript(m.code)
+messagebox("here2")
 asem = m.engine.getCompiledAssembly()
 m.kodnet.COM.loadAssembly(m.asem)
 

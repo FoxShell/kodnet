@@ -10,14 +10,14 @@ _screen.kodnet = _screen.kodnetHelper.create()
 _screen.kodnetManager =  _screen.kodnet.utils
 
 
-DEFINE CLASS KodnetClient as Custom 
+DEFINE CLASS Kodnet6Client as Custom 
 
 	kodnet = .null. 
 	kodnetUtils = .null.
 	lastException = .null.
 	_clients = 0
 	targets = .null.
-	delegatePointerClass = .null.
+	proxyClass= .null.
 	
 	FUNCTION init()
 		this.targets = CREATEOBJECT("collection")
@@ -25,14 +25,14 @@ DEFINE CLASS KodnetClient as Custom
 	
 	FUNCTION create()
 		IF ISNULL(this.kodnet)
-			this.kodnet = CREATEOBJECT("FoxShell.net6.KodnetCOM")
+			this.kodnet = CREATEOBJECT("FoxShell.KodnetCOM")
 			*this.kodnet.setVfpCom(_vfp )
 			this.kodnet.setVfpClient(this)
 			*DISp= this.getrealReference(this.kodnet.vfp.internal_value)
 			*this.kodnet.setVfpClient(m.disp)
 
 			this.kodnetUtils = this.kodnet.utils
-			this.delegatePointerClass = this.kodnet.getStaticWrapper("FoxShell.DelegatePointer")
+			this.proxyClass= this.kodnet.getStaticWrapper("FoxShell.Proxy")
 		ENDIF 
 
 		RETURN this.kodnet 
@@ -60,7 +60,7 @@ DEFINE CLASS KodnetClient as Custom
 		this._clients = this._clients + 1 
 		str = ALLTRIM(STR(this._clients))
 		m.col.Add(m.target, m.str)
-		return this.delegatePointerClass.construct(this._clients)	
+		return this.proxyClass.construct(this._clients)	
 	ENDFUNC
 	
 	FUNCTION Delegate(target, method)

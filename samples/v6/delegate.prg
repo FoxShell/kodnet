@@ -2,7 +2,7 @@
 * do (getenv("Userprofile") + "\kwruntime\kodnet\loader.prg")
 * _screen.kodnetLoader.load("v6")
 
-if type("_screen.kodnetLoader.v6") == "U" || isnull(_screen.kodnetLoader.v6)
+if type("_screen.kodnetLoader.v6") == "U" or isnull(_screen.kodnetLoader.v6)
 	* Execute init.prg
 	MESSAGEBOX("Por favor ejecute el archivo init.prg primero. (Please execute first init.prg)", 64, "")
 	return 
