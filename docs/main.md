@@ -42,9 +42,13 @@ kodnet = _screen.kodnetLoader.Load(version)
 ?m.kodnet.Helper
 ```
 
-- [KodnetCOM object](./kodnet-com.md)
-- [KodnetUtils object](./kodnet-utils.md)
-- [KodnetHelper object](./kodnet-helper.md)
+Please READ documentation of each one: 
+
+- [KodnetCOM object](./kodnet-com.md) Principal object for comunication
+
+- [KodnetUtils object](./kodnet-utils.md) Utilities for make easier some actions
+
+- [KodnetHelper object](./kodnet-helper.md) Helper for create Delegates
 
 
 
