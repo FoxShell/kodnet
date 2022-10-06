@@ -26,18 +26,23 @@ int = m.kodnet.COM.getStaticWrapper("System.Int32")
 
 ## Documentation
 
-```typescript
-_screen.kodnetLoader.Load(version: string): KodnetVFPObject{
-    // returns and object 
-    // with 3 properties: 
+```foxpro
+* version can be v6 or v4
+version = "v6" 
 
-    // COM => KodnetCOM Type
-    // Helper => KodnetHelper Type 
-    // Utils => KodnetUtils Type
-}
+kodnet = _screen.kodnetLoader.Load(version)
+
+* KodnetCOM Object 
+?m.kodnet.COM
+
+* KodnetUtils Object 
+?m.kodnet.Utils
+
+* KodnetHelper Object 
+?m.kodnet.Helper
 ```
 
-## KodnetCom object (kodnet.COM)
+## KodnetCOM object (kodnet.COM)
 
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetBytesFromString**
