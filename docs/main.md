@@ -54,6 +54,7 @@ public byte[] GetBytesFromString(string str){
 }
 ```
 
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetDefaultFor**
 
@@ -83,6 +84,7 @@ size.Width = 200
 size.Height = 100
 ```
 
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetStaticWrapper**
 
@@ -135,6 +137,7 @@ ConvertClass = m.kodnetCOM.getStaticWrapper("System.Convert")
 result = ConvertClass.ToBase64String(UTF8Encoding.GetBytes("Texto xxx"))
 ```
 
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetWrapped**
 
@@ -162,6 +165,8 @@ for i=0 to m.strarray.Length - 1
     ? m.strArray.Get(m.i)
 endfor 
 ```
+
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetWrappedConverted**
 
@@ -193,6 +198,8 @@ value = m.kodnetCOM.GetStaticWrapper("Test").SumFloat(m.num1, m.num2)
 ?m.value
 ```
 
+--- 
+
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **GetTypeFromString**
 
 
@@ -219,6 +226,7 @@ Console.Write(t.ToString());
 
 Getting a **System.Type** is util for methods like ```GetDefaultFor, GetWrapped or GetWrappedConverted```
 
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **LoadAssembly**
 
@@ -234,6 +242,8 @@ kodnetCOM = _screen.kodnetLoader.v6.COM
 * This is only an example, Assembly System is loaded by default, so you don't need this
 m.kodnetCOM.LoadAssembly("System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089")
 ```
+
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **LoadAssemblyFile**
 
@@ -252,6 +262,7 @@ m.kodnetCOM.LoadAssembly("c:\path\to\Aforge.dll")
 
 All LoadAssembly methods are useful when you need load other types not included by default.
 
+---
 
 #### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **LoadAssemblyPartialName**
 
