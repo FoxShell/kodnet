@@ -292,3 +292,434 @@ messageboxClass.show("Messagebox using .NET")
 ```
 
 
+
+## KodnetUtils object (kodnet.Utils)
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **Dictionary**
+
+```foxpro
+FUNCTION Dictionary() as System.Collections.Generic.Dictionary<System.String, System.Object>
+```
+
+or 
+
+```foxpro
+FUNCTION Dictionary(TKey as System.Type, TValue as System.Type) as System.Collections.Generic.Dictionary<TKey, TValue>
+```
+
+or 
+
+```foxpro
+FUNCTION Dictionary(TKeyStr as string, TValueStr as string) as System.Collections.Generic.Dictionary<TKey, TValue>
+```
+
+
+Returns a representation (InstanceWrapper) of System.Collections.Generic.Dictionary<TKey, TValue>. If you omit parameters, ```TKey``` is taken as **System.String** type and ```TValue``` as **System.Object** type. 
+
+Consider this example: 
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+dict = m.kodnetUtils.dictionary()
+m.dict.item["Name"] = "James"
+m.dict.item["Age"] = "28"
+
+* is equivalent to this:
+dict = m.kodnetCOM.getStaticWrapper("System.Collections.Generic.Dictionary<System.String, System.Object>").contruct()
+m.dict.item["Name"] = "James"
+m.dict.item["Age"] = "28"
+
+
+dict = m.kodnetUtils.dictionary("System.Int32", "System.String")
+m.dict.item[0] = "James"
+m.dict.item[1] = "28"
+
+* is equivalent to this:
+dict = m.kodnetCOM.getStaticWrapper("System.Collections.Generic.Dictionary<System.Int32, System.String>").contruct()
+m.dict.item[0] = "James"
+m.dict.item[1] = "28"
+```
+
+---
+
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **CustomList**
+
+```foxpro
+FUNCTION CustomList(TValue as System.Type, p1 as TValue, p2 as TValue, p3 as TValue ...) as System.Collections.Generic.List<TValue>
+```
+
+or 
+
+```foxpro
+FUNCTION CustomList(TValueStr as string, p1 as TValue, p2 as TValue, p3 as TValue ...) as System.Collections.Generic.List<TValue>
+```
+
+Returns a representation (InstanceWrapper) of System.Collections.List<TValue>. You can pass ```TValue``` as System.Type or as string. 
+Is usefull for returns a *List* with values in one line:
+
+
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+vocals = m.kodnetUtils.CustomList("System.String", "A", "E", "I", "O", "U")
+for i=0 to m.vocals.length - 1
+    ?m.vocals.item[m.i]
+endfor 
+
+* is equivalent to this:
+vocals = m.kodnetCOM.getStaticWrapper("System.Collections.Generic.List<System.String>").contruct()
+vocals.Add("A")
+vocals.Add("E")
+vocals.Add("I")
+vocals.Add("O")
+vocals.Add("U")
+for i=0 to m.vocals.length - 1
+    ?m.vocals.item[m.i]
+endfor 
+```
+
+--- 
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **List**
+
+```foxpro
+FUNCTION List(p1 as System.Object, p2 as System.Object, p3 as System.Object ...) as System.Collections.Generic.List<TValue>
+```
+
+Similar to **CustomList** but ```TValue``` parameter omitted, and taken as **System.Object**. If no parameters sent, returns an empty **List**
+
+
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+list = m.kodnetUtils.List(1, "A", 2, "B")
+for i=0 to m.list.length - 1
+    ?m.list.item[m.i]
+endfor 
+
+* is equivalent to this:
+list = m.kodnetCOM.getStaticWrapper("System.Collections.Generic.List<System.Object>").contruct()
+list.Add(1)
+list.Add("A")
+list.Add(2)
+list.Add("B")
+for i=0 to m.vocals.length - 1
+    ?m.list.item[m.i]
+endfor 
+```
+
+---
+
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **Array**
+
+```foxpro
+FUNCTION Array(TValue as System.Type, p1 as TValue, p2 as TValue, p3 as TValue ...) as TValue[]
+```
+
+OR
+
+```foxpro
+FUNCTION Array(TValueStr as string, p1 as TValue, p2 as TValue, p3 as TValue ...) as TValue[]
+```
+
+Similar to **CustomList** but instead of **List** returns a .NET Array. For example, suppose you need call a method with receives **string[]** as parameter: 
+
+```c# 
+public class Test{
+    public string Join(string[] words, string separator){
+        return string.Join(separator, words);
+    }
+}
+```
+
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+testClass = m.kodnetCOM.getStaticWrapper("Test")
+
+* create array in oneline
+array = m.kodnetUtils.Array("System.String", "kodnet", "is" "great")
+?m.testClass.Join(m.array, " ")
+
+
+* is equivalent to this:
+array = m.kodnetCOM.getStaticWrapper("System.String[]").contruct(3)
+array.Set(0, "kodnet")
+array.Set(1, "is")
+array.Set(2, "great")
+?m.testClass.Join(m.array, " ")
+```
+
+---
+
+
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **RGBToArgb**
+
+```foxpro
+FUNCTION RGBToArgb(rgb as int, alpha as int) as int
+```
+
+Add alpha channel to RGB color and returns the *number* representation. Is usefull for use with **.NET Controls** inside VFP. 
+
+---
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **Await**
+
+```foxpro
+FUNCTION Await(task as System.Threading.Task) as System.Object
+```
+
+**kodnet** supports async operations. **Await** method allows execute *wait* in sync mode the result of async operation. If the async operations completes *Faulted* (with an error) throws an exception, if not, returns the **result** of async operation.
+
+
+
+## KodnetHelper object (kodnet.Helper)
+
+**kodnet** helper is used mostly in *internal* operations, but there are some useful methods: 
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **Proxy**
+
+```foxpro
+FUNCTION Proxy(object as VFPObject) as FoxShell.Proxy
+```
+
+Due to a limitation in VFP COM+ object model, you should not pass VFP *objects*  to *Managed Code* (.NET Framework or .NET 6) methods. Because each time you pass a new object, previous objects are replaced (I don't know why). So, if you need for any reason pass a VFP object to .NET Method use this method. 
+
+For example (incorrect way, never do this): 
+
+```c#
+public class Test{
+
+    public static int CheckPerson(object personObject){
+        dynamic person = personObject;
+        if(person.name == "James" && person.age == 28){
+            return (int) person.GetIdNumber();
+        }
+        return 0;
+    }
+}
+``` 
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+testClass = m.kodnetCOM.getStaticWrapper("Test")
+
+person = createobject("person")
+m.person.age = 28
+m.person.name = "James"
+
+
+
+* NEVER DO THIS. TECHNICALLY WORKS, YES, BUT PRODUCE RARE CONDITIONS, AND KODNET WILL STOP WORKING CORRECTLY
+m.testClass.CheckPerson(m.person)
+
+
+Define Class Person as Custom
+
+    age = 0
+    name = ""
+
+    Function GetIdNumber()
+        return this.age * 2
+    endfunc 
+
+EndDefine 
+```
+
+Instead use this way: 
+
+
+```c#
+// add reference or load assembly kodnet dll 
+public class Test{
+
+    public static int CheckPerson(FoxShell.Proxy person){
+        
+        var name = (string)person.GetProperty("name");
+        var age = (int)person.GetProperty("age");
+
+        if(name == "James" && age == 28){
+            return (int) person.InvokeMethod("GetIdNumber", new object[]{});
+        }
+        return 0;
+    }
+}
+``` 
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetHelper = _screen.kodnetLoader.v6.Helper
+
+testClass = m.kodnetCOM.getStaticWrapper("Test")
+
+person = createobject("person")
+m.person.age = 28
+m.person.name = "James"
+
+
+
+* correct way
+proxy = kodnetHelper.proxy(m.person)
+m.testClass.CheckPerson(m.proxy)
+* Recommended for free memory and avoid memory leaks
+m.proxy.dispose()
+
+
+Define Class Person as Custom
+
+    age = 0
+    name = ""
+
+    Function GetIdNumber()
+        return this.age * 2
+    endfunc 
+
+EndDefine 
+```
+
+
+However it's recommended avoid usage of passing VFP Objects to .NET for performance reasons. You can try write your code using Dictionary for example, when need pass data from VFP to .NET
+
+
+```c#
+using System.Collections.Generic;
+public class Test{
+
+    public static int CheckPerson(Dictionary<string, object> person){
+        
+        var name = (string)person["name"];
+        var age = (int)person["age"];
+
+        if(name == "James" && age == 28){
+            return age * 2;
+        }
+        return 0;
+    }
+}
+``` 
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+testClass = m.kodnetCOM.getStaticWrapper("Test")
+
+person = m.kodnetUtils.dictionary()
+m.person.item["age"] = 28
+m.person.item["name"] = "James"
+
+?m.testClass.CheckPerson(m.person)
+```
+
+
+---
+
+
+#### <img src="https://client-tools.west-wind.com/docs/bmp/classmethod.png" width="20" height="20" /> Method **Delegate**
+
+```foxpro
+FUNCTION Delegate(object as VFPObject, method as String) as FoxShell.DelegateProxy
+```
+
+Returns a **FoxShell.DelegateProxy** object representing a method invocation. Basically is an special **FoxShell.Proxy** object with an additional **Invoke** method, that invokes in the VFPObject the specified **method**.
+
+It's useful for construct **.NET delegates**
+
+
+Consider this example: 
+
+```c#
+// add reference or load assembly kodnet dll
+public class Test{
+
+    public static int SumFromVFP(FoxShell.DelegateProxy method, int num1, int num2){
+
+        return (int) method.Invoke(new object[]{ num1, num2 });
+        
+    }
+}
+``` 
+
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+testClass = m.kodnetCOM.getStaticWrapper("Test")
+
+
+SumObject = createobject("SumClass")
+
+delegate = kodnetHelper.Delegate(m.SumObject, "Sum")
+?m.testClass.SumFromVFP(m.delegate, 10, 20)
+
+* Recommended for free memory and avoid memory leaks
+m.delegate.dispose()
+
+
+Define Class SumClass as Custom
+
+    Function Sum(p1 as number, p2 as number)
+        return m.p1 + m.p2
+    endfunc 
+
+EndDefine 
+
+
+```
+
+This is good, but not always you have control on c# code to add reference to **kodnet** dll. How execute VFP methods from **.NET**? Using **.NET delegates**. Look the same example using a **System.Func** delegate.
+
+
+```c#
+using System;
+public class Test{
+
+    public static int SumFromVFP(Func<int, int, int> method, int num1, int num2){
+        return method.Invoke(num1, num2);        
+    }
+}
+``` 
+
+
+```foxpro
+kodnetCOM = _screen.kodnetLoader.v6.COM
+kodnetUtils = _screen.kodnetLoader.v6.Utils
+
+testClass = m.kodnetCOM.getStaticWrapper("Test")
+funcIntIntIntClass = m.kodnetCOM.getStaticWrapper("System.Func<System.Int32, System.Int32, System.Int32>")
+
+
+SumObject = createobject("SumClass")
+* create a System.Func<int,int,int> delegate
+func = m.funcIntIntIntClass.construct( m.kodnetHelper.Delegate(m.SumObject, "Sum") )
+
+?m.testClass.SumFromVFP(m.func, 10, 20)
+
+* Recommended for free memory and avoid memory leaks
+m.func.dispose()
+
+
+Define Class SumClass as Custom
+
+    Function Sum(p1 as number, p2 as number)
+        return m.p1 + m.p2
+    endfunc 
+
+EndDefine 
+
+
+```
+
+
