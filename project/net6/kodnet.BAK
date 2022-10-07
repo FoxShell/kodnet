@@ -18,7 +18,6 @@ DEFINE CLASS Kodnet6Client as Custom
 	_clients = 0
 	targets = .null.
 	proxyClass= .null.
-	winApi = .null.
 	
 	FUNCTION init()
 		this.targets = CREATEOBJECT("collection")
@@ -141,78 +140,5 @@ DEFINE CLASS Kodnet6Client as Custom
 		this.lastException = m.exception
 		ERROR(m.exception.toString())
 	ENDFUNC 	
-	
-	* UI FUNCTION
-	FUNCTION SetParent(handle, form)
-		return this.winapi.setparent(m.handle, m.form)
-	ENDFUNC 
-	
-	FUNCTION getForegroudWindow()
-		return jxshelldotnet4_getForegroudWindow()
-	ENDFUNC 
 
-ENDDEFINE 
-
-
-DEFINE CLASS JXSHELLDOTNET4_WIN32API AS Session
-	datasession =1
-	
-	FUNCTION init()
-		* Funciones del API
-		DECLARE INTEGER FormatMessage IN kernel32 as jxshelldotnet4_formatMessage;
-		    INTEGER   dwFlags,;
-		    integer   lpSource,;
-		    INTEGER   dwMessageId,;
-		    INTEGER   dwLanguageId,;
-		    INTEGER @ lpBuffer,;
-		    INTEGER   nSize,;
-		    INTEGER   Arguments
-		    
-		    
-		DECLARE long GetLastError IN kernel32 as jxshelldotnet4_lastError 
-		
-		DECLARE long SetParent IN WIN32API as jxshelldotnet4_setParent;
-			LONG,LONG
-			
-		DECLARE long GetParent IN WIN32API as jxshelldotnet4_getParent;
-			LONG
-			
-		DECLARE long GetForegroundWindow IN WIN32API as jxshelldotnet4_getForegroudWindow
-		
-	ENDFUNC 
-	
-	FUNCTION setParent(controlHandle, form)
-		LOCAL o
-		o= form
-		if(TYPE("m.form")="O")
-			o= form.hwnd 
-		ENDIF 
-		
-		LOCAL ret
-		ret = jxshelldotnet4_setParent(m.controlHandle, m.o)
-		if(m.ret = 0)
-			&& Significa que falló ...
-			ret = jxshelldotnet4_lastError ()
-			IF m.ret = 0
-				ERROR("Falló asignando el objeto parent al control. Error desconocido.")
-				RETURN .f.
-			else	
-				
-				LOCAL flags
-				flags = BITOr(FORMAT_MESSAGE_ALLOCATE_BUFFER ,;
-					 FORMAT_MESSAGE_FROM_SYSTEM ,FORMAT_MESSAGE_IGNORE_INSERTS)
-				
-				LOCAL message, len
-				message = 0 &&SPACE(4096)
-				len = jxshelldotnet4_formatMessage(m.flags, 0, m.ret, 0, @message, 0, 0)
-				ERROR("Falló asignando el objeto parent al control. " + SYS(2600,m.message,m.len))
-				RETURN .f.
-				
-				
-			ENDIF 
-			
-			
-		ENDIF 
-	ENDFUNC 
-	
 ENDDEFINE 

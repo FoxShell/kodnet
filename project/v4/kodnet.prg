@@ -1,16 +1,16 @@
-if(TYPE("_screen.kodnet6Helper") == "U")
-	_screen.AddProperty("kodnet6Helper", .null.)
-	_screen.AddProperty("kodnet6", .null.)
-	_screen.AddProperty("kodnet6Manager", .null.)
+if(TYPE("_screen.kodnetHelper") == "U")
+	_screen.AddProperty("kodnetHelper", .null.)
+	_screen.AddProperty("kodnet", .null.)
+	_screen.AddProperty("kodnetManager", .null.)
 ENDIF 
 
 
-_screen.kodnet6Helper = CREATEOBJECT("kodnet6Client")
-_screen.kodnet6 = _screen.kodnet6Helper.create()
-_screen.kodnet6Manager =  _screen.kodnet6.utils
+_screen.kodnetHelper = CREATEOBJECT("kodnetClient")
+_screen.kodnet = _screen.kodnetHelper.create()
+_screen.kodnetManager =  _screen.kodnet.utils
 
 
-DEFINE CLASS Kodnet6Client as Custom 
+DEFINE CLASS KodnetClient as Custom 
 
 	kodnet = .null. 
 	kodnetUtils = .null.
@@ -22,11 +22,12 @@ DEFINE CLASS Kodnet6Client as Custom
 	
 	FUNCTION init()
 		this.targets = CREATEOBJECT("collection")
+		this.winapi = CREATEOBJECT("JXSHELLDOTNET4_WIN32API")
 	ENDFUNC 
 	
 	FUNCTION create()
 		IF ISNULL(this.kodnet)
-			this.kodnet = CREATEOBJECT("FoxShell.net6.KodnetCOM")
+			this.kodnet = CREATEOBJECT("FoxShell.KodnetCOM")
 			*this.kodnet.setVfpCom(_vfp )
 			this.kodnet.setVfpClient(this)
 			*DISp= this.getrealReference(this.kodnet.vfp.internal_value)
@@ -141,7 +142,7 @@ DEFINE CLASS Kodnet6Client as Custom
 		this.lastException = m.exception
 		ERROR(m.exception.toString())
 	ENDFUNC 	
-	
+
 	* UI FUNCTION
 	FUNCTION SetParent(handle, form)
 		return this.winapi.setparent(m.handle, m.form)
@@ -152,6 +153,7 @@ DEFINE CLASS Kodnet6Client as Custom
 	ENDFUNC 
 
 ENDDEFINE 
+
 
 
 DEFINE CLASS JXSHELLDOTNET4_WIN32API AS Session
