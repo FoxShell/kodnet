@@ -14,6 +14,7 @@ If you want see the C# source code of DLL used internally, go to this project: [
 * VFP8 or superior
 * NET Framework v4.5 or superior or NET 6 (like you prefer)
 
+> NOTE: If you plan use .NET 6 you need install the appropiate version for each architecture. For example, if you will use with VisualFoxPro 8 or 9, you need install NET 6 Runtime x86, but if you will use with VisualFoxPro Advanced 64 bits, you need install NET 6 Runtime x64.
 
 ## Install
 

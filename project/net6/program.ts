@@ -135,7 +135,8 @@ export class Program{
             }
 
 
-            let dll = Path.join(__dirname, "lib", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
+            let dll64 = Path.join(__dirname, "lib", "x64", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
+            let dll32 = Path.join(__dirname, "lib", "x86", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
             //let uri = "file:///" + dll.replace(/\\/g, '/')
             let regs = []
             if(!asadmin){
@@ -145,13 +146,13 @@ export class Program{
                 let regfile2 = Path.join(__dirname, "reg", "user6432.reg")
                 let content = await fs.promises.readFile(regfile1,'utf8')
                 while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll)
+                    content = content.replace("${file}", dll64)
                 }
                 regs.push(await parseRegedit(content))
 
                 content = await fs.promises.readFile(regfile2,'utf8')
                 while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll)
+                    content = content.replace("${file}", dll32)
                 }
                 regs.push(await parseRegedit(content))
             }
@@ -165,13 +166,13 @@ export class Program{
                 let regfile2 = Path.join(__dirname, "reg", "admin6432.reg")
                 let content = await fs.promises.readFile(regfile1,'utf8')
                 while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll)
+                    content = content.replace("${file}", dll64)
                 }
                 regs.push(await parseRegedit(content))	
                 
                 content = await fs.promises.readFile(regfile2,'utf8')
                 while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll)
+                    content = content.replace("${file}", dll32)
                 }
                 regs.push(await parseRegedit(content))
             }
