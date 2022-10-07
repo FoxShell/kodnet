@@ -6,6 +6,9 @@
 - Use any .NET Core (called NET 6 by Microsoft) object from VisualFoxPro
 - Execute and interact with  javascript/typescript code from VisualFoxPro
 
+This project is for generate the installer, focused to work with VisualFoxPro.
+If you want see the C# source code of DLL used internally, go to this project: [KodnetLib](https://github.com/FoxShell/KodnetLib)
+
 ## Requirements
 
 * VFP8 or superior
