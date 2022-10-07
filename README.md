@@ -34,6 +34,9 @@ Anything you need, can be done on **kodnet**! Your libraries based on **kodnet**
 
 * [QRCoder](https://github.com/FoxShell/qrcoder) Create QR Codes in PNG format with VFP (actually works with .NET Framework)
 
+* [Webcam-example](https://github.com/FoxShell/webcam_example) An example using AForge libraries to show Camera preview and save screenshot in a VFP form.
+
+
 ## Features
 
 * Supports VisualFoxPro Advanced 64 bits
