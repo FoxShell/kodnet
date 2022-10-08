@@ -137,46 +137,41 @@ export class Program{
 
             let dll64 = Path.join(__dirname, "lib", "x64", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
             let dll32 = Path.join(__dirname, "lib", "x86", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
-            //let uri = "file:///" + dll.replace(/\\/g, '/')
             let regs = []
-            if(!asadmin){
-
-                console.info("> Registering Interop for \x1b[33mNET 6+\x1b[0m (user mode, non admin)")
-                let regfile1 = Path.join(__dirname, "reg", "user.reg")
-                let regfile2 = Path.join(__dirname, "reg", "user6432.reg")
-                let content = await fs.promises.readFile(regfile1,'utf8')
+            let usermode = "user mode, non admin"
+            let files = ["user.reg", "user6432.reg"]
+            if(asadmin){
+                usermode = "admin mode"
+                files = ["admin.reg", "admin6432.reg"]
+            }
+            let arch = Os.arch(), bits32 = false
+            if(arch == "ia32"){
+                console.info("> Looks like you are using a 32 bit machine. If this is not correct, please reinstall KwRuntime for 64 bits")
+                bits32 = true
+            }
+            
+            console.info(`> Registering Interop for \x1b[33mNET 6+ x86\x1b[0m (${usermode})`)
+            let regfile = Path.join(__dirname, "reg", "user6432.reg")
+            if(bits32){
+                regfile = Path.join(__dirname, "reg", "user.reg")
+            }
+            let content = await fs.promises.readFile(regfile,'utf8')
+            while(content.indexOf("${file}") >= 0){
+                content = content.replace("${file}", dll32)
+            }
+            regs.push(await parseRegedit(content))
+            if(!bits32){
+                console.info(`> Registering Interop for \x1b[33mNET 6+ x64\x1b[0m (${usermode})`)
+                regfile = Path.join(__dirname, "reg", "user.reg")
+                content = await fs.promises.readFile(regfile,'utf8')
                 while(content.indexOf("${file}") >= 0){
                     content = content.replace("${file}", dll64)
                 }
                 regs.push(await parseRegedit(content))
-
-                content = await fs.promises.readFile(regfile2,'utf8')
-                while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll32)
-                }
-                regs.push(await parseRegedit(content))
-            }
-            else{
-
-                let kodnet = await getFolder(true)
-                await copyFiles(kodnet)
-
-                console.info("> Registering Interop for \x1b[33mNET 6+\x1b[0m (admin mode)")
-                let regfile1 = Path.join(__dirname, "reg", "admin.reg")			
-                let regfile2 = Path.join(__dirname, "reg", "admin6432.reg")
-                let content = await fs.promises.readFile(regfile1,'utf8')
-                while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll64)
-                }
-                regs.push(await parseRegedit(content))	
-                
-                content = await fs.promises.readFile(regfile2,'utf8')
-                while(content.indexOf("${file}") >= 0){
-                    content = content.replace("${file}", dll32)
-                }
-                regs.push(await parseRegedit(content))
             }
 
+            
+            
 
             let winregPath = Path.join(Os.homedir(), "KwRuntime", "runtime", "node_modules", "winreg-vbs")
             let WinReg = require(winregPath)
