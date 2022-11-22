@@ -1,2 +1,5 @@
 dist/
 .sync*
+**/node_modules
+**/dist
+.vscode

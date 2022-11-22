@@ -2,6 +2,8 @@ import Path from 'path'
 import Os from 'os'
 import fs from 'fs'
 import Child from 'child_process'
+import {paths} from '../paths.ts'
+import {Registry, registry} from "github://kwruntime/win32reg@8408ff6/src/mod.ts"
 import * as async from "gh+/kwruntime/std@1.1.14/util/async.ts"
 
 
@@ -91,9 +93,9 @@ export class Program{
             }
 
             let copyFiles = async function(kodnet: string){
-                let commonfolder = Path.join(__dirname,"..", "common")
+                let commonfolder = paths.common
                 let filesc = await fs.promises.readdir(commonfolder)
-                await fs.promises.cp(Path.join(__dirname), kodnet,{
+                await fs.promises.cp(paths.v4, kodnet,{
                     recursive: true
                 })
                 for(let file of filesc){
@@ -134,14 +136,14 @@ export class Program{
             }
 
 
-            let dll = Path.join(__dirname, "lib", "Kodnet.dll")
+            let dll = Path.join(paths.v4, "lib", "Kodnet.dll")
             let uri = "file:///" + dll.replace(/\\/g, '/')
             let regs = []
             if(!asadmin){
                 // no admin 
                 console.info("> Registering Interop for \x1b[33m.NET Framework 4.5+\x1b[0m (user mode, non admin)")
-                let regfile1 = Path.join(__dirname, "reg", "user.reg")
-                let regfile2 = Path.join(__dirname, "reg", "user6432.reg")
+                let regfile1 = Path.join(paths.v4, "reg", "user.reg")
+                let regfile2 = Path.join(paths.v4, "reg", "user6432.reg")
                 let content = await fs.promises.readFile(regfile1,'utf8')
                 while(content.indexOf("${file_uri}") >= 0){
                     content = content.replace("${file_uri}", uri)
@@ -160,8 +162,8 @@ export class Program{
                 await copyFiles(kodnet)
 
                 console.info("> Registering Interop for \x1b[33m.NET Framework 4.5+\x1b[0m (admin mode)")
-                let regfile1 = Path.join(__dirname, "reg", "admin.reg")			
-                let regfile2 = Path.join(__dirname, "reg", "admin6432.reg")
+                let regfile1 = Path.join(paths.v4, "reg", "admin.reg")			
+                let regfile2 = Path.join(paths.v4, "reg", "admin6432.reg")
                 let content = await fs.promises.readFile(regfile1,'utf8')
                 while(content.indexOf("${file_uri}") >= 0){
                     content = content.replace("${file_uri}", uri)
@@ -176,12 +178,18 @@ export class Program{
             }
 
 
+            /*
             let winregPath = Path.join(Os.homedir(), "KwRuntime", "runtime", "node_modules", "winreg-vbs")
             let WinReg = require(winregPath)
+            */
+
+            
+
             for(let reg of regs){
                 //console.info("Reg:",reg)
                 let items = Object.keys(reg)
 
+                /*
                 let def = new async.Deferred<void>()
                 WinReg.createKey(items, (e) => e ? def.reject(e) : def.resolve())
                 await def.promise
@@ -189,6 +197,11 @@ export class Program{
                 def = new async.Deferred<void>()
                 WinReg.putValue(reg, (e) => e ? def.reject(e) : def.resolve())
                 await def.promise
+                */
+
+                await registry.createKeys(items)
+                await registry.putValues(reg)
+
             }
 
 

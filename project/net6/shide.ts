@@ -9,6 +9,7 @@ import Path from 'path'
 import Os from 'os'
 import crypto from 'crypto'
 import stringify from 'npm://safe-json-stringify@1.2.0'
+import uniqid from 'npm://uniqid@5.4.0'
 
 
 let userData = Path.join(Os.homedir(),".kawi","user-data")
@@ -121,6 +122,49 @@ export class Program{
 
 		if(logStream)
 			logStream.write("## " + str + "\n")
+	}
+
+
+	
+
+	getTypesDefinition(obj: object){
+
+		var proto:any = obj //Object.getPrototypeOf(obj)
+		var types = new Array<any>()
+		while(proto){
+			let name = undefined
+			if(proto === obj){
+				name = "self"
+			}
+			else if(proto.__id__name == undefined){
+				name = proto.__id__name = uniqid()
+			}
+			let props = Object.getOwnPropertyDescriptors(proto)
+			let methods = new Array<any>()
+
+			for(let [key, value] of Object.entries(props)){
+				methods.push({
+					name: key,
+					writable: value.writable
+				})	
+			}
+
+
+			types.push({
+				name: proto.__id__name,
+				methods
+			})
+
+			// get parent proto 
+			if(proto === obj){
+				proto = Object.getPrototypeOf(obj)
+			}
+			else{
+				proto = proto.__proto__
+			}
+		}
+
+		return types
 	}
 
 	async #execute(line: string){
@@ -244,13 +288,21 @@ export class Program{
 
 						await fs.promises.writeFile(file, cmd.code + additionalCode)
 						let mod = await import(file)
-						let keys = Object.keys(mod)
+						let defs = this.getTypesDefinition(mod)
+						//let keys = Object.keys(mod)
 						this.#modules.set(cmd.name, mod)
 
-						
+						let methods = []
+						for(let type of defs){
+							let mes = type.map((a) => a.methods)
+							for(let method of mes){
+								methods.push(method.name)
+							}
+						}
 						
 						cmdr.value = {
-							methods: keys
+							defs,
+							methods
 						}
 
 					}catch(e){

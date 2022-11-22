@@ -3,7 +3,8 @@ import Os from 'os'
 import fs from 'fs'
 import Child from 'child_process'
 import * as async from "gh+/kwruntime/std@1.1.14/util/async.ts"
-
+import {Registry, registry} from "github://kwruntime/win32reg@8408ff6/src/mod.ts"
+import {paths} from '../paths.ts'
 
 async function parseRegedit(content: string){
 	let lines = content.split(/\r?\n/g)
@@ -92,9 +93,9 @@ export class Program{
             }
 
             let copyFiles = async function(kodnet: string){
-                let commonfolder = Path.join(__dirname,"..", "common")
+                let commonfolder = paths.common
                 let filesc = await fs.promises.readdir(commonfolder)
-                await fs.promises.cp(Path.join(__dirname), kodnet,{
+                await fs.promises.cp(paths.net6, kodnet,{
                     recursive: true
                 })
                 for(let file of filesc){
@@ -135,8 +136,8 @@ export class Program{
             }
 
 
-            let dll64 = Path.join(__dirname, "lib", "x64", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
-            let dll32 = Path.join(__dirname, "lib", "x86", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
+            let dll64 = Path.join(paths.net6, "lib", "x64", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
+            let dll32 = Path.join(paths.net6, "lib", "x86", "kodnet.comhost.dll").replace(/\\/g, '\\\\')
             let regs = []
             let usermode = "user mode, non admin"
             let files = ["user.reg", "user6432.reg"]
@@ -151,9 +152,9 @@ export class Program{
             }
             
             console.info(`> Registering Interop for \x1b[33mNET 6+ x86\x1b[0m (${usermode})`)
-            let regfile = Path.join(__dirname, "reg", "user6432.reg")
+            let regfile = Path.join(paths.net6, "reg", "user6432.reg")
             if(bits32){
-                regfile = Path.join(__dirname, "reg", "user.reg")
+                regfile = Path.join(paths.net6, "reg", "user.reg")
             }
             let content = await fs.promises.readFile(regfile,'utf8')
             while(content.indexOf("${file}") >= 0){
@@ -162,7 +163,7 @@ export class Program{
             regs.push(await parseRegedit(content))
             if(!bits32){
                 console.info(`> Registering Interop for \x1b[33mNET 6+ x64\x1b[0m (${usermode})`)
-                regfile = Path.join(__dirname, "reg", "user.reg")
+                regfile = Path.join(paths.net6, "reg", "user.reg")
                 content = await fs.promises.readFile(regfile,'utf8')
                 while(content.indexOf("${file}") >= 0){
                     content = content.replace("${file}", dll64)
@@ -173,12 +174,16 @@ export class Program{
             
             
 
+            /*
             let winregPath = Path.join(Os.homedir(), "KwRuntime", "runtime", "node_modules", "winreg-vbs")
             let WinReg = require(winregPath)
+            */
+
             for(let reg of regs){
                 //console.info("Reg:",reg)
                 let items = Object.keys(reg)
 
+                /*
                 let def = new async.Deferred<void>()
                 WinReg.createKey(items, (e) => e ? def.reject(e) : def.resolve())
                 await def.promise
@@ -186,8 +191,10 @@ export class Program{
                 def = new async.Deferred<void>()
                 WinReg.putValue(reg, (e) => e ? def.reject(e) : def.resolve())
                 await def.promise
+                */
+               await registry.createKeys(items)
+               await registry.putValues(reg)
             }
-
 
         
         }catch(e){
