@@ -22,7 +22,7 @@ If you want see the C# source code of DLL used internally, go to this project: [
 2. From CMD execute:
 
 ```bash
-kwrun gh+/FoxShell/packages/kodnet/3.0.7.kwc
+kwrun gh+/FoxShell/packages/kodnet/3.0.8.kwc
 ```
 
 > NOTE: No required admin permissions. You can (and is recommended) execute as normal user.
